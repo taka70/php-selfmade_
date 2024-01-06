@@ -4,42 +4,44 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+
+class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    use HasFactory;
+    public $timestamps = false;
+
+    protected $table = 'users';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'name',
         'email',
+        'name',
+        'kana',
         'password',
+        'role',
+        'tel',
+        // 'del_flg',
+        // 'deleted_at'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    // //編集画面への表示内容検索
+    // public function show($id){
+    //     $user = User::find($id); 
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
-}
+    //     // データが存在する場合は、詳細ビューにデータを渡して表示する
+    //     return view('contacts.detail', ['user' => $user]);
+    // }
+
+    // public function customUpdateMethod($id, $data)
+    // {
+    //     $user = User::findOrFail($id);
+    //     $user->update($data);
+    //     return $user;
+    // }
+
+ }
