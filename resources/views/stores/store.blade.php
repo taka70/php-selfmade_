@@ -10,7 +10,7 @@
     @include('Top.header')
     @yield('header')
         <div class="main2">
-            <li class="title" >▪商品一覧</li>
+            <li class="title" >▪店舗一覧</li>
             <table>
                 @foreach($products as $product)
                 <tr class="content2">    
@@ -47,7 +47,7 @@
                         @endif
                     </td>
                     <td class="content">
-                        <a  href="{{ route('showProductDetail', ['id' => $product->id]) }}" class="detail-link">詳細</a>
+                        <a  href="{{ route('showStoreDetail', ['id' => $product->id]) }}" class="detail-link">詳細</a>
                     </td>
                 </tr>
                 @endforeach

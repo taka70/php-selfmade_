@@ -16,7 +16,7 @@
                         <a href="{{ route('showTopPage') }}">Home</a>
                     </div>
                     <div class="menu_click">
-                        <a>店舗</a>
+                        <a href="{{ route('showStore') }}">店舗</a>
                     </div>
                     <div class="menu_click">
                         <a href="{{ route('showProduct') }}">商品</a>

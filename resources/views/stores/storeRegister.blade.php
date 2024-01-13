@@ -44,17 +44,21 @@
                     <input type="text" name="postal_code" id="postal_code" placeholder="123-4567" value="{{ old('postal_code') }}">
                 </dd>
                 <dt>
-                    <label for="prefecture">都道府県</label>
-                    <span class="required">*</span>
+                    <label for="prefecture_id">都道府県</label>
+                    <span class="prefecture_id">*</span>
                 </dt>
                 <div class="error-message">
-                    @if ($errors->has('prefecture'))
-                    <li>{{$errors->first('prefecture')}}</li>
+                    @if ($errors->has('prefecture_id'))
+                    <li>{{$errors->first('prefecture_id')}}</li>
                     @endif
                 </div>
                 <dd>
                     <div class="form-input-error"></div>
-                    <input type="text" name="prefecture" id="prefecture" placeholder="大阪府" value="{{ old('prefecture') }}">
+                    <select id="prefecture_id" name="prefecture_id" class="userType">
+                    @foreach ($prefectures as $prefecture)
+                        <option value="{{ old('prefecture_id') }}">{{ $prefecture->name }}</option>
+                    @endforeach
+                    </select>
                 </dd>
                 <dt>
                     <label for="address1">住所1</label>
@@ -105,15 +109,15 @@
                 </div>
                 <dd>
                     <div class="form-input-error"></div>
-                    <input type="text" name="tel" id="tel" placeholder="06612345678" value="{{ old('number') }}">
+                    <input type="text" name="tel" id="tel" placeholder="06612345678" value="{{ old('tel') }}">
                 </dd>
                 <dt>
-                    <label for="file">店舗写真（看板・ロゴ・外観・内装）</label>
+                    <label for="photo">店舗写真（看板・ロゴ・外観・内装）</label>
                     <span class="required">*</span>
                 </dt>
                 <dd>
                     <div class="form-input-error"></div>
-                    <input type="file" name="file" id="file" class="form-control" value="{{ old('file') }}">
+                    <input type="file" name="photo" id="photo" class="form-control" value="{{ old('photo') }}">
                 </dd>
             </dl>
             <dd class="submit">

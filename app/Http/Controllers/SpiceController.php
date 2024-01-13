@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
-
+use App\Models\Spice;
 
 class SpiceController extends Controller
 {
@@ -22,36 +22,24 @@ class SpiceController extends Controller
     public function showSpice():View
     {
 
-    return view('spices.spice');
+        $spices = Spice::all();
+
+        return view('spices.spice', ['spices' => $spices ]);
     }
 
 
     /**
      * スパイス詳細画面の表示
      */
-    public function showSpiceDetail():View
+    public function showSpiceDetail($id):View
     {
 
-        // $spice = Spice::find($id); 
+        $spice = Spice::find($id); 
+        // dd($spice);
 
-    return view('spices.spiceDetail');
-    // return view('spices.spiceDetail',compact('spice')):
+        // return view('spices.spiceDetail', ['spices' => $spices ]);
+        return view('spices.spiceDetail',compact('spice'));
     }
-
-    //  /**
-    //  * 詳細画面の表示
-    //  */
-    // public function show($id)
-    // {
-    //     $player = Player::find($id); 
-    //        // 総得点の計算
-    //        $totalGoals = $player->goals()->count(); // "goals" は選手の得点を格納するテーブル名
-
-    //        // 得点履歴の取得
-    //        $goalHistory = $player->goals()->get(); // "goals" は選手の得点を格納するテーブル名
-   
-    //        return view('players.detail', compact('player', 'totalGoals', 'goalHistory'));
-    //    }
 
 }
 

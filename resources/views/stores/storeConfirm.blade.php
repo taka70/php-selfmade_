@@ -42,8 +42,8 @@
                 {{ $inputs['postal_code'] }}
                 <input name="postal_code" value="{{ $inputs['postal_code'] }}" type="hidden">
                 <dt>都道府県</dt>
-                {{ $inputs['prefecture'] }}
-                <input name="prefecture" value="{{ $inputs['prefecture'] }}" type="hidden">
+                {{ $inputs['prefecture_id'] }}
+                <input name="prefecture_id" value="{{ $inputs['prefecture_id'] }}" type="hidden">
                 <dt>住所1</dt>
                 {{ $inputs['address1'] }}
                 <input name="address1" value="{{ $inputs['address1'] }}" type="hidden">
@@ -51,11 +51,11 @@
                 {{ $inputs['address2'] }}
                 <input name="address2" value="{{ $inputs['address2'] }}" type="hidden">
                 <dt>メールアドレス</dt>
-                {{ $inputs['mail'] }}
-                <input name="mail" value="{{ $inputs['mail'] }}" type="hidden">
+                {{ $inputs['email'] }}
+                <input name="email" value="{{ $inputs['email'] }}" type="hidden">
                 <dt>電話番号</dt>
-                {{ $inputs['number'] }}
-                <input name="number" value="{{ $inputs['number'] }}" type="hidden">
+                {{ $inputs['tel'] }}
+                <input name="tel" value="{{ $inputs['tel'] }}" type="hidden">
                 <dt>アップロード写真</dt>
                 {{ $inputs['file'] }}
                 <input name="file" value="{{ $inputs['file'] }}" type="hidden">

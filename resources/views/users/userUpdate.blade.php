@@ -4,11 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
 <link rel="stylesheet" href="{{ asset('/css/UserStyle.css') }}">
-<title>新規ユーザー登録</title>
+<title>ユーザー情報編集</title>
 </head>
  <body>
+    @include('Top.header')
+    @yield('header')
         <div class="contact_box">
-        <h2>新規ユーザー登録</h2>
+        <h2>ユーザー情報編集</h2>
         <form id="myForm" action="{{ route('showUserConfirm') }}" method="POST">
         @csrf
             <h3>下記の項目をご記入の上、確認ボタンを押してください</h3>

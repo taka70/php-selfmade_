@@ -209,5 +209,75 @@ class UserController extends Controller
     // //     }
     // // }
 
+        /**
+     * 新規ユーザー編集画面の表示
+     */
+    public function showUserUpdate():View
+    {
+        // $userTable = new User;
+        // $users = User::all();
+
+        // return view('users.account', compact('users')); 
+        return view('users.userUpdate'); 
+    }
+
+    /**
+     * 新規ユーザー編集情報確認画面の表示
+     */
+    public function showUserUpdateConfirm(Request $request)
+    {
+        // バリデーションを実行
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+            'name' => 'required|max:10',
+            'kana' => 'required|max:10',
+            'password' => 'required|min:6|confirmed',
+            'userType' => 'required',
+            'number' => 'nullable|regex:/^[0-9]*$/',
+        ]);
+
+        // フォームからの入力値を全て取得
+        $inputs = $request->all();
+        
+        return view('users.userUpdateConfirm', ['inputs' => $inputs]);        
+    }
+
+    /**
+     * 新規ユーザー編集完了画面の表示
+     */
+    public function showUserUpdateComplete(Request $request)
+    {
+        // 戻るボタンをクリックされた場合
+        if($request->input('back') == 'back'){
+            return redirect('/userUpdateConfirm')->withInput();
+        }
+
+        // 入力内容をデータベースに保存
+        $user = new User();
+
+        $user->email = $request->input('email');
+        $user->name = $request->input('name');
+        $user->kana = $request->input('kana');
+        $user->password = $request->input('password');
+        $userType = $request->input('userType'); // userTypeの値を一度変数に保存する
+
+        // dd($userType);
+        if ($userType === 'admin') {
+            $user->role = 0; // 管理者の場合、roleを0に設定
+        } elseif ($userType === 'storeStaff') {
+            $user->role = 2; // 店舗スタッフの場合、roleを2に設定
+        } else {
+            $user->role = 1; // 会員の場合、roleを1に設定
+        }
+        
+        $user->tel = $request->input('tel');
+        
+        // dd($user);
+
+        $user->save();
+
+        return view('users.userUpdateComplete',['user' => $user]); 
+    }
+
 }
 

@@ -9,23 +9,28 @@
 <body>
     @include('Top.header')
     @yield('header')
-    <form action="{{ route('showSpiceDetail') }}" method="GET">
-        @csrf
         <div class="main">
+
             <div class="container">
                 <img class="image3" src="{{asset('img/spice_background.jpg')}}"></img>
             </div>
+            <div>
+            <li class="title" >▪スパイス一覧</li>
             <table>
-                <tr>
-                    <th class="content">ID</th>
-                    <th class="content">写真</th>
-                    <th class="content">発祥地</th>
-                    <th class="content">リーズナブル</th>
-                    <th class="content">辛さ</th>
-                    <th class="content">ローカルテイスト</th>
+                @foreach($spices as $spice)
+                <tr class="content6">    
+                    <th class="content">
+                    <img class="image3" src="{{asset($spice->photo)}}"></img>
+                    </th>
+                    <th class="content">名称：{{ $spice->name }}</th>
+                    <th class="content">効果：{{ $spice->effect }}</th>
+                    <td class="content">
+                        <a  href="{{ route('showSpiceDetail', ['id' => $spice->id]) }}" class="detail-link">詳細</a>
+                    </td>
                 </tr>
+                @endforeach
             </table>
+            </div>
         </div>
-    </form>
 </body>
 </html>

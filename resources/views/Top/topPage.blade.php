@@ -18,10 +18,10 @@
                 <div class="container2">
                     <div class="container3">
                         <div class="content">
-                            <a href="{{ route('showProduct') }}">商品一覧</a>
+                            <a href="{{ route('showStore') }}">店舗一覧</a>
                         </div>
                         <div class="content">
-                            <a href="{{ route('showStore') }}">店舗一覧</a>
+                            <a href="{{ route('showProduct') }}">商品一覧</a>
                         </div>
                         <div class="content">
                             <a href="{{ route('showSpice') }}">スパイス一覧</a>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="container4">
                         <div class="content">
-                            <a>ユーザー情報編集</a>
+                            <a href="{{ route('showUserUpdate') }}">ユーザー情報編集</a>
                         </div>
                         <div class="content">
                             <a href="{{ route('showStoreRegister') }}">店舗登録</a>

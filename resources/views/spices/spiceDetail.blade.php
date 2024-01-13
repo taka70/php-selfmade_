@@ -8,15 +8,30 @@
 </head>
 <body>
     @include('Top.header')
-    @yield('header')
-    <form action="{{ route('showSpice') }}" method="POST" id="userForm">
-        @csrf
-            <div class="main">
-                <div class="container">
-                    <img class="image" src="{{asset('img/spice/Cumin.png')}}"></img>
+    @yield('header')        
+        @if(isset($spice))
+            <div class="content6">
+                <div class="content2">  
+                    <div class="container5">  
+                        <div class="content2">
+                            <div class="content7">名称：{{ $spice->name }}</div>
+                            <div class="content7">効果：{{ $spice->effect }}</div> 
+                        </div>
+                        <div class="content">
+                            <img class="image3" src="{{asset($spice->photo)}}"></img>
+                        </div>   
+                    </div>
+                    <div class="content2">
+                        <div class="content8">科目：{{ $spice->subject }}</div>
+                        <div class="content8">原産地：{{ $spice->habitat }}</div>
+                        <div class="content8">部位：{{ $spice->part }}</div>
+                        <div class="content8">別名：{{ $spice->alias }}</div>
+                        <div class="content8">特徴：{{ $spice->characteristic }}</div>
+                    </div>
                 </div>
+            <div class="content4">
+                <a  href="{{ route('showSpice') }}" class="back-link">戻る</a>
             </div>
-            <button type="submit" class="btn_style1">戻る</button>
-    </form>
+        @endif
 </body>
 </html>

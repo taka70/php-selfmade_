@@ -4,15 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{{ asset('/css/UserStyle.css') }}">
-<title>ユーザー登録情報画面</title>
+<title>ユーザー情報編集内容確認画面</title>
 <head>
 </head>
 <body>
+    @include('Top.header')
+    @yield('header')
         <div class="contact_box">
-        <h2>ユーザー登録情報</h2>
+        <h2>ユーザー情報編集内容確認</h2>
         <form action="{{ route('showUserComplete') }}" method="POST">
         @csrf
-            <p>下記のユーザー登録情報をご確認の上、問題なければ登録ボタンを押してください。</p>
+            <p>下記のユーザー情報をご確認の上、問題なければ登録ボタンを押してください。</p>
             <p>内容を訂正する場合は戻るを押してください。</p>
             <dl class="confirm">
                 <dt>ユーザーID</dt>

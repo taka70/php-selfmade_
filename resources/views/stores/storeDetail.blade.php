@@ -52,7 +52,7 @@
                     </div>
                 </div>
             <div class="content4">
-                <a  href="{{ route('showProduct', ['id' => $product->id] ) }}" class="back-link">戻る</a>
+                <a  href="{{ route('showProduct') }}" class="back-link">戻る</a>
             </div>
         @endif
 </body>

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
+use App\Models\Product;
+use App\Models\Country;
 
 
 class ProductController extends Controller
@@ -19,39 +21,31 @@ class ProductController extends Controller
     /**
      * 商品画面の表示
      */
-    public function showProduct():View
+    public function showProduct(Request $request):View
     {
 
-    return view('products.product');
+        $products = Product::paginate(4);
+
+        return view('products.product', compact('products'));
     }
 
 
     /**
      * 商品詳細画面の表示
      */
-    public function showProductDetail():View
+
+    public function showProductDetail(Request $request, $id)
     {
+        // $idを使用して商品を取得するロジック
+        $product = Product::findOrFail($id);
 
-        // $product = Product::find($id); 
+        if (!$product) {
+            abort(404); // 商品が見つからない場合は404エラーを返す
+        }
 
-    return view('products.productDetail');
-    // return view('products.productDetail',compact('product')):
+        return view('products.productDetail', compact('product'));
     }
 
-    //  /**
-    //  * 詳細画面の表示
-    //  */
-    // public function show($id)
-    // {
-    //     $player = Player::find($id); 
-    //        // 総得点の計算
-    //        $totalGoals = $player->goals()->count(); // "goals" は選手の得点を格納するテーブル名
-
-    //        // 得点履歴の取得
-    //        $goalHistory = $player->goals()->get(); // "goals" は選手の得点を格納するテーブル名
-   
-    //        return view('players.detail', compact('player', 'totalGoals', 'goalHistory'));
-    //    }
 
 }
 

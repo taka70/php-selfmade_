@@ -29,6 +29,12 @@ class User extends Model
         // 'deleted_at'
     ];
 
+    protected $table = 'prefectures';
+    protected $primaryKey = 'id';
+    protected $fillable = [
+        'name',
+    ];
+
     // //編集画面への表示内容検索
     // public function show($id){
     //     $user = User::find($id); 
