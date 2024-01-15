@@ -81,7 +81,7 @@ class UserController extends Controller
         $user->email = $request->input('email');
         $user->name = $request->input('name');
         $user->kana = $request->input('kana');
-        $user->password = $request->input('password');
+        $user->password =  bcrypt($request->input('password'));
         $userType = $request->input('userType'); // userTypeの値を一度変数に保存する
 
         // dd($userType);
@@ -92,14 +92,31 @@ class UserController extends Controller
         } else {
             $user->role = 1; // 会員の場合、roleを1に設定
         }
+
+        // // パスワードのハッシュ化
+        // $hashedPassword = bcrypt($request->input('password'));
+        // $user->password = $hashedPassword;
         
         $user->tel = $request->input('tel');
         
+        // $request->user()->fill([
+        //     'password' => Hash::make($request->newPassword)
+        //     ])->save();
+
+        // 入力内容をデータベースに保存
+        // $user = User::create([
+        // 'email' => $request->input('email'),
+        // 'name' => $request->input('name'),
+        // 'kana' => $request->input('kana'),
+        // 'password' => $hashedPassword,
+        // 'role' => ($request->input('userType') === 'admin') ? 0 : (($request->input('userType') === 'storeStaff') ? 2 : 1),
+        // 'tel' => $request->input('tel'),
+        // ]);
         // dd($user);
 
         $user->save();
 
-        return view('users.userComplete',['user' => $user]); 
+        return redirect()->route('showUserComplete', ['user' => $user]);
     }
 
     // public function login(Request $request) 

@@ -10,7 +10,7 @@
     <img class="image" src="{{asset('img/spiceCurryLogin.jpg')}}"></img>
         <div class="flame2">
     <li class="title" >ログイン</li>
-    <form action="{{ route('showTopPage') }}" method="POST" id="userForm">
+    <form action="{{ route('login') }}" method="POST" id="userForm">
     @csrf
         <div class="login_content">
             <tr>

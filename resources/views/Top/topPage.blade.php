@@ -9,14 +9,22 @@
 <body>
     @include('Top.header')
     @yield('header')
-    <form action="{{ route('showSpice') }}" method="POST" id="userForm">
-        @csrf
+                @if (session('loginSuccess'))
+                    <div class="alert alert-success">
+                        {{ session('loginSuccess')}}
+                    </div>
+                @endif
             <div class="main">
                 <div class="container1">
                     <img class="image2" src="{{asset('img/spiceCurryTop.jpg')}}"></img>
                 </div>
                 <div class="container2">
-                    <div class="container3">
+                    <div class="content6">
+                    <li>名前： {{ Auth::user()->name }}</li>
+                    <li>Email: {{ Auth::user()->email }}</li>
+                    <li>区分: {{ Auth::user()->role }}</li>
+                    </div>
+                    <div class="container4">
                         <div class="content">
                             <a href="{{ route('showStore') }}">店舗一覧</a>
                         </div>
@@ -42,6 +50,6 @@
                         </div>
                     </div>
                 </div>
-    </form>
+            </div> 
 </body>
 </html>

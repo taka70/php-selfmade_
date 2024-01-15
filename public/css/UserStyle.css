@@ -421,42 +421,63 @@ th {
     justify-content: space-around;
     background-color: orange;
     padding: 1%;
+	align-items: center;
 }
 
 .g_nav{
-	display: flex;
+	display: grid;
+	grid-template-columns: 30% 40% 40% 50%;
 }
 
 .menu_click{
+	display: flex;
+    justify-content: center;
+}
+
+.logout_click{
 	margin-left: 30px;
+	width: 30%;
+	display: flex;
+    justify-content: flex-end;
 }
 
 /* TopPage */
 .image2{
-	width: 70%;
+    width: 100%;
     height: auto;
 }
 
 .main{
-	display: flex;
-	width: 100%;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 30% 70%;
 	}
 
 .container1{
-    width: 35%;
+
 }
 
 .container2{
-	width: 50%;
+	display: flex;
+	flex-direction: column;
+	margin: 3%;
 }
 
+
 .container3{
-	margin: 20% 0;
+	display: flex;
+	flex-direction: column;
+	margin: 3%;
+	align-items: flex-end;
 }
 
 .container4{
-
+	margin: 20% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 
 
 /* spice */
@@ -468,9 +489,10 @@ th {
 }
 
 .content6 {
-	display: flex;
+    display: flex;
     flex-direction: column;
-	margin: 3%;
+    margin: 3%;
+    align-items: flex-end;
 }
 
 .content7 {
@@ -530,7 +552,6 @@ tbody{
     padding: 3%;
 	display: flex;
 	flex-direction: column;
-    width: 80%;
 }
 
 .main3{

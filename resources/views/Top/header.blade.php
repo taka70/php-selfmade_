@@ -25,8 +25,11 @@
                         <a href="{{ route('showSpice') }}">スパイス</a>
                     </div>
                 </div>
-                <div class="menu_click">
-                    <a>Logout</a>
+                <div class="logout_click">
+                    <form class="btn_content"action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn_logout">ログアウト</button>
+                    </form>
                 </div>
             </div>
         </div>

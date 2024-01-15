@@ -69,27 +69,53 @@ class StoreController extends Controller
     public function showStoreConfirm(Request $request)
     {
     
+        $inputs = [];
+
         // バリデーションを実行
         $validatedData = $request->validate([
             'name' => 'required|max:10',
             'postal_code' => 'required|regex:/^[0-9]*$/',
-            'prefecture_id' => 'required|exists:prefectures,id',
+            'prefecture_id' => 'nullable',
             'address1' => 'required|max:20',
             'address2' => 'required|max:20',
             'email' => 'nullable|email',
             'tel' => 'required|regex:/^[0-9]*$/',
-            'photo' => 'nullable',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        // dd($request->file('file'));
-        $inputs->prefecture_id = $validatedData['prefecture_id'];
 
-        $inputs = $request->all();
+        // dd($request->file('file'));
+        // $inputs->prefecture_id = $validatedData['prefecture_id'];
+
+        // // 都道府県名を取得
+        // $prefecture = Prefecture::find($inputs['prefecture_id']);
+        // 都道府県名を取得
+        $prefecture = Prefecture::find($validatedData['prefecture_id']);
         
-        $file_name = $request->file('photo')->getClientOriginalName();
+        // これで$prefecture->nameを使用して都道府県名にアクセスできます
+        $inputs['prefecture->name'] = $prefecture->name;
+        $inputs['name'] = $validatedData['name'];
+        $inputs['postal_code'] = $validatedData['postal_code'];
+        $inputs['address1'] = $validatedData['address1'];
+        $inputs['address2'] = $validatedData['address2'];
+        $inputs['email'] = $validatedData['email'];
+        $inputs['tel'] = $validatedData['tel'];
+        // $inputs['photo'] = $validatedData['photo'];
+        $dir = 'img';
+
+        $request->file('photo')->store('public/photos' . $dir);
+
+        // $inputs = $request->all();
+        
+        // $file_name = $request->file('photo')->getClientOriginalName();
 
         // $request->file('file')->storeAs('public',$file_name);
 
-        $request->file('photo')->store('public');
+        // $request->file('photo')->store('public');
+        // ファイルがアップロードされているかを確認
+        // if ($request->hasFile('photo')) {
+        //     $photoPath = $request->file('photo')->store('public/photos');
+        //     $inputs['photo'] = $photoPath;
+        // }
 
         // 問題がなければ入力内容確認ページのviewに変数を渡して表示
         return view('stores.storeConfirm', ['inputs' => $inputs]);        
@@ -112,7 +138,7 @@ class StoreController extends Controller
         }
 
         // 入力内容をデータベースに保存
-        $store = new Store();
+        $store = new Store($inputs);
 
         $store->name = $request->input('name');
         $store->postal_code = $request->input('postal_code');
@@ -123,6 +149,10 @@ class StoreController extends Controller
         $store->tel = $request->input('tel');
         $store->file = $request->input('photo');
        
+        $image->photo = $file_name;
+        $image->file_path = 'storage/app/public/photos' . $dir . '/' . $photo;
+        $image->save();
+
         $store->save();
 
         Storage::putFile('',$request->file('photo'));

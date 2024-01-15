@@ -63,7 +63,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+            'table' => 'users', // テーブル名を確認
+            'id' => 'id',       // プライマリキーを確認
         ],
+    
 
         // 'users' => [
         //     'driver' => 'database',

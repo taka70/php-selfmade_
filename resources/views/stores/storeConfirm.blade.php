@@ -57,8 +57,8 @@
                 {{ $inputs['tel'] }}
                 <input name="tel" value="{{ $inputs['tel'] }}" type="hidden">
                 <dt>アップロード写真</dt>
-                {{ $inputs['file'] }}
-                <input name="file" value="{{ $inputs['file'] }}" type="hidden">
+                {{ $inputs['photo'] }}
+                <input name="photo" value="{{ $inputs['photo'] }}" type="hidden">
                 <dd class="confirm_btn">
                     <button type="submit" name="back" value="back" style="background-color: lightblue; margin-left: 10px;">戻る</button>
                     <button type="submit" class="btn_style1">登録</button>

@@ -13,7 +13,7 @@
         <h2>新規店舗登録</h2>
         <form id="myForm" action="{{ route('showStoreConfirm') }}" method="POST" enctype="multipart/form-data">
         @csrf
-            <h3>下記の項目をご記入の上送信ボタンを押してください</h3>
+            <h3>下記の項目をご記入の上、確認ボタンを押してください</h3>
             <p><span class="required">*</span>
             は必須項目となります。</p>
             <dl>

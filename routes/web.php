@@ -30,21 +30,23 @@ Route::post('/userConfirm', [UserController::class, 'showUserConfirm'])->name('s
 
 // 新規ユーザー登録完了画面
 Route::post('/userComplete', [UserController::class, 'showUserComplete'])->name('showUserComplete');
+Route::get('/userComplete', [UserController::class, 'showUserComplete'])->name('showUserComplete');
 
 // トップ画面
 Route::post('/topPage', [TopController::class, 'showTopPage'])->name('showTopPage');
-Route::get('/topPage', [TopController::class, 'showTopPage'])->name('showTopPage');
+Route::get('/topPage', [TopController::class, 'showTopPage'])->middleware('auth');
 
 
 // // ログイン画面
 // Route::get('/', [TopController::class, 'showLogin'])->name('showLogin');
 // Route::post('/', [TopController::class, 'register'])->name('register');
 
-// // ログイン処理
-// Route::post('/players/index', [TopController::class, 'login'])->name('login');
+// ログイン処理
+Route::post('/login', [TopController::class, 'login'])->name('login');
+Route::get('/login', [TopController::class, 'login'])->name('login');
 
-// // ログアウト処理
-// Route::post('/', [TopController::class, 'logout'])->name('logout');
+// ログアウト処理
+Route::post('/logout', [TopController::class, 'logout'])->name('logout');
 
 // スパイス一覧画面
 Route::get('/spice', [SpiceController::class, 'showSpice'])->name('showSpice');
