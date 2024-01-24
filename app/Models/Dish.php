@@ -10,22 +10,23 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 
-class Store extends Model
+class Dish extends Model
 {
 
     use HasFactory;
     public $timestamps = false;
 
-    protected $table = 'stores';
+    protected $table = 'dishes';
     protected $primaryKey = 'id';
     protected $fillable = [
         'name',
-        'postal_code',
-        'prefecture_id',
-        'address1',
-        'address2',
-        'tel',
-        'user_id',
+        'price',
+        'country_id',
+        'reasonable',
+        'painfulness',
+        'local_taste',
+        'dish_text',
+        'store_id',
         'photo',
     ];
 

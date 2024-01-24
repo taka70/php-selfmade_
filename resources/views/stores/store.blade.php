@@ -4,56 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('/css/UserStyle.css') }}">
-    <title>スパイス一覧画面</title>
+    <title>店舗一覧画面</title>
 </head>
+    <style>
+        tbody{
+                display: grid;
+                grid-template-columns: 25% 25% 25% 25%;
+            }
+
+    </style>
 <body>
     @include('Top.header')
     @yield('header')
         <div class="main2">
             <li class="title" >▪店舗一覧</li>
             <table>
-                @foreach($products as $product)
+                @foreach($stores as $store)
                 <tr class="content2">    
                     <th class="content">
-                    <img class="image3" src="{{asset($product->photo)}}"></img>
+                    <img class="image3" src="{{ asset('storage/' . $store->photo) }}" alt="Store Photo">
                     </th>
-                    <th class="content">{{ $product->name }}</th>
-                    <th class="content3">発祥地：{{ $product->country->name }}</th>
-                    <td class="content5">リーズナブル：
-                        @if ($product->reasonable === 1)
-                            <img class="image3" src="{{ asset('img/estimate/coin1.png') }}" alt="Coin 1">
-                        @elseif ($product->reasonable === 2)
-                            <img class="image3" src="{{ asset('img/estimate/coin2.png') }}" alt="Coin 2">
-                        @elseif ($product->reasonable === 3)
-                            <img class="image3" src="{{ asset('img/estimate/coin3.png') }}" alt="Coin 3">
-                        @endif
-                    </td>
-                    <td class="content5">辛さ：
-                        @if ($product->painfulness === 1)
-                            <img class="image3" src="{{ asset('img/estimate/painfulness1.png') }}" alt="Coin 1">
-                        @elseif ($product->painfulness === 2)
-                            <img class="image3" src="{{ asset('img/estimate/painfulness2.png') }}" alt="Coin 2">
-                        @elseif ($product->painfulness === 3)
-                            <img class="image3" src="{{ asset('img/estimate/painfulness3.png') }}" alt="Coin 3">
-                        @endif
-                    </td>
-                    <td class="content5">ローカルテイスト:
-                        @if ($product->local_taste === 1)
-                            <img class="image3" src="{{ asset('img/estimate/ganesha1.png') }}" alt="Coin 1">
-                        @elseif ($product->local_taste === 2)
-                            <img class="image3" src="{{ asset('img/estimate/ganesha2.png') }}" alt="Coin 2">
-                        @elseif ($product->local_taste === 3)
-                            <img class="image3" src="{{ asset('img/estimate/ganesha3.png') }}" alt="Coin 3">
-                        @endif
-                    </td>
+                    <th class="content">{{ $store->name }}</th>
+                    <th class="content3">郵便番号：{{ $store->postal_code }}</th>
+                    <th class="content3">都道府県：{{ $store->prefecture_id }}</th>
+                    <th class="content3">住所1:{{ $store->address1 }}</th>
+                    <th class="content3">住所2:{{ $store->address2 }}</th>
+                    <th class="content3">電話番号：{{ $store->tel }}</th>
+                    <th class="content3">ユーザーID:{{ $store->user_id }}</th>
                     <td class="content">
-                        <a  href="{{ route('showStoreDetail', ['id' => $product->id]) }}" class="detail-link">詳細</a>
+                        <a  href="{{ route('showStoreDetail', ['id' => $store->id]) }}" class="detail-link">詳細</a>
                     </td>
                 </tr>
                 @endforeach
             </table>
             <div class="content4">
-                {{ $products->links() }} 
+                {{ $stores->links() }} 
             </div>
         </div>
 </body>

@@ -87,18 +87,6 @@
                     <input type="text" name="address2" id="address2" placeholder="1丁目 はなまるビル4F" value="{{ old('address2') }}">
                 </dd>
                 <dt>
-                    <label for="email">メールアドレス</label>
-                </dt>
-                <div class="error-message">
-                    @if ($errors->has('email'))
-                        <li>{{$errors->first('email')}}</li>
-                    @endif
-                </div>
-                <dd>
-                    <div class="form-input-error"></div>
-                    <input type="text" name="email" id="email" placeholder="test@test.co.jp" value="{{ old('email') }}">
-                </dd>
-                <dt>
                     <label for="tel">電話番号</label>
                     <span class="required">*</span>
                 </dt>

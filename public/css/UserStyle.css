@@ -335,8 +335,7 @@ th {
 }
 
 .btn_logout {
-	background-color: greenyellow;
-	margin: 20px;
+	background-color: lightsalmon;
 	padding: 20px;
 	border: 3px solid #ddd;
 }
@@ -415,7 +414,7 @@ th {
 
 
 /* header */
-.header_style{
+/* .header_style{
 	display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -441,7 +440,235 @@ th {
     justify-content: flex-end;
 }
 
+.nav-02-active {
+	display: block;
+	right: 0;
+} */
+
+.alert-success{
+	color: #c30;
+}
+
+header {
+	width: 100%;
+	height: 100px;
+	position: sticky;
+	top: 0;
+	background-color: rgba(255, 252, 252, 0.9);
+	z-index: 2;
+	opacity: 0;
+	animation-name: fade-in-down;
+	animation-duration: 1.5s;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+	animation-delay: 1s;
+	z-index: 3;
+}
+
+@keyframes fade-in-down {
+	0% {
+	   opacity: 0;
+	   transform: translateY(-20px);
+	}
+	100% {
+	   opacity: 1;
+	   transform: translateY(0);
+	}
+}
+
+header nav {
+	height: 100%;
+}
+header nav a {
+	color: #000000;
+	margin-right: 20px;
+	margin-bottom: 5px;
+}
+header nav a:hover {
+	opacity: 0.8;
+}
+
+.header-container{
+	padding-top: 30px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 30px;
+}
+
+/* チェックボックスは非表示*/
+#open{
+	display: none;
+}
+
+.nav-02 {
+	display: none;
+}
+
+
+
 /* TopPage */
+.image5{
+    width: 70%;
+}
+
+.mv_copy{
+    top: 30%;
+    left: 30px;
+    margin-top: -80px;
+    position: fixed;
+    z-index: 3;
+}
+
+.mv_copy_en{
+	margin-left: -5px;
+	width: 716px;
+}
+
+.mv_copy_en span{
+	display: block;
+}
+
+.mv_news1{
+	top: 90%;
+	position: absolute;
+	right: 0;
+	z-index: 3;
+	background-color: white;
+    padding: 20px 125px 20px 125px;
+    border-radius: 100px 0 0 100px;
+}
+
+.mv_news2{
+	top: 110%;
+	position: absolute;
+	right: 0;
+	z-index: 3;
+	background-color: white;
+	padding: 20px 125px 20px 125px;
+    border-radius: 100px 0 0 100px;
+}
+
+.mv_news3{
+	top: 130%;
+	position: absolute;
+	right: 0;
+	z-index: 3;
+	background-color: white;
+    padding: 20px 100px 20px 100px;
+    border-radius: 100px 0 0 100px;
+}
+
+/*右からのスライドイン要素*/
+.fadeIn-right {
+	opacity: 0;
+  }
+
+  .fadeIn-right.active {
+	opacity: 1;
+	animation: fadeIn-right 1.5s;
+  }
+
+  @keyframes fadeIn-right {
+	0% {
+	  opacity: 0;
+	  transform: translateX(100px);
+	  transition-duration: 1s;
+	}
+	100% {
+	  opacity: 1;
+	  transform: translateX(0px);
+	  transition-duration: 1s;
+	}
+  }
+
+
+.mv_news_head{
+	width: calc(20.32% - 25px);
+}
+
+.mv_news_h{
+	font-size: 1.25rem;
+	font-family: brandon-grotesque,sans-serif;
+	font-style: normal;
+	font-weight: 500;
+}
+
+.mv_news_date{
+	font-weight: 400;
+}
+
+.mv_news_body{
+	width: 79.68%;
+}
+
+.mv_news_title{
+    letter-spacing: -.01em;
+    line-height: 1.5;
+}
+
+.c-headline {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.c-headline_en {
+    font-size: 3.75rem;
+    padding-right: 45px;
+}
+
+.c-headline_ja {
+    font-size: 1.5rem;
+    letter-spacing: .2em;
+}
+
+.c-grids {
+	display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(3,1fr);
+	height: 300px;
+    margin: 0 50px;
+    justify-items: center;
+}
+
+.c-grid{
+	display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: beige;
+    justify-content: center;
+	border-radius: 40px;
+}
+
+.c-link_bg {
+    background: #53accc;
+    z-index: -1;
+}
+
+.c-link_h[data-v-8d3b1825] {
+    pointer-events: none;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+.c-link_h_en {
+	font-size: 1.125re;
+    display: block;
+    font-family: brandon-grotesque,sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: .05em;
+}
+
+.c-link_h_ja {
+    font-size: 1.5rem;
+    letter-spacing: .17em;
+	display: block;
+}
+
 .image2{
     width: 100%;
     height: auto;
@@ -460,7 +687,7 @@ th {
 .container2{
 	display: flex;
 	flex-direction: column;
-	margin: 3%;
+	margin: 3% 0 3% 5%;
 }
 
 
@@ -472,7 +699,7 @@ th {
 }
 
 .container4{
-	margin: 20% 0;
+	margin: 80% 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -489,10 +716,10 @@ th {
 }
 
 .content6 {
-    display: flex;
+	display: flex;
     flex-direction: column;
     margin: 3%;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 
 .content7 {
@@ -534,11 +761,11 @@ th {
 }
 
 
-/* product */
+/* product
 tbody{
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
-}
+} */
 
 .content2{
 	display: flex;
@@ -568,6 +795,7 @@ tbody{
 }
 
 .content4 {
+	width: 100%;
 	display: flex;
 	justify-content: center; 
 	text-decoration: underline;
@@ -596,3 +824,93 @@ tbody{
 }
 
 
+.tableColor {
+	background-color: rgb(131, 245, 239);
+	display: grid;
+	grid-template-columns:7% 15% 15% 20% 15% 20% 8%;
+}
+
+
+@media(max-width:500px){
+	.nav-02 {
+		display: block;
+		position: fixed;
+		/* right: -40%;
+		width: 40%; */
+		height: 100%;
+		background-color: white;
+		opacity: 0.8;
+		padding: 7.5rem 2.5rem;
+		z-index: 1;
+		transition: 0.7s;
+		overflow-x: hidden;
+		top: 0%;
+	}
+	
+	.nav-02 ul {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	header nav {
+		display: none;
+	}
+	
+	.nav-02 ul li {
+		margin-bottom: 2.5rem;
+		color: #2da690;
+	}
+	
+	.link {
+		color: #000000DE;
+		cursor: pointer;
+	}
+	
+	.menu-btn{
+		display: block;
+		position: relative; /*線の起点*/
+		width: 50px; /*ボタンの幅*/
+		height: 50px; /*ボタンの高さ*/
+		cursor: pointer; /*クリック可能を伝える*/
+		z-index: 9999; /*最前面*/
+	}
+	
+	/*** ボタンの三本線（共通） ***/
+	.menu-btn span{
+		position: absolute;
+		width: 50%; /*線の長さ*/
+		height: 3px; /*線の太さ*/
+		left: calc(50% - 40% / 2); /*中央から長さの半分を引く*/
+		background: #279b8f; /*線の色*/
+		transition: .4s;
+	}
+	
+	/* 順に上・中・下の線 */
+	.top-bar{
+		top: calc(35% - 2px / 2); /*上から35%の位置*/ 
+	}
+	.center-bar{
+		top: calc(50% - 2px / 2); /*上から50%の位置*/
+	}
+	.under-bar{
+		top: calc(65% - 2px / 2); /*上から65%の位置*/
+	}
+	
+	/** クリック後(✔が入った後)の線 **/
+	/*上の線*/
+	#open:checked ~ .menu-btn > .top-bar {
+		top: calc(50% - 2px / 2); /*中央*/
+		transform: rotate(45deg); /*45度回転*/
+	}
+	
+	  /*中の線*/
+	#open:checked ~ .menu-btn > .center-bar{
+		opacity: 0;/*真ん中の線は透過*/
+	}
+	
+	/*下の線*/
+	#open:checked ~ .menu-btn > .under-bar{
+		top: calc(50% - 2px / 2); /*中央*/
+		transform: rotate(-45deg); /*-45度回転*/
+	}
+}

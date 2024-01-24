@@ -30,7 +30,7 @@
     @yield('header')
         <div class="contact_box">
         <h2>店舗登録情報確認</h2>
-        <form action="{{ route('showStoreComplete') }}" method="POST">
+        <form action="{{ route('showStoreComplete') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <p>下記の店舗登録情報をご確認の上送信ボタンを押してください。</p>
             <p>内容を訂正する場合は戻るを押してください。</p>
@@ -50,15 +50,14 @@
                 <dt>住所2（番地以下・建物名・階数）</dt>
                 {{ $inputs['address2'] }}
                 <input name="address2" value="{{ $inputs['address2'] }}" type="hidden">
-                <dt>メールアドレス</dt>
-                {{ $inputs['email'] }}
-                <input name="email" value="{{ $inputs['email'] }}" type="hidden">
                 <dt>電話番号</dt>
                 {{ $inputs['tel'] }}
                 <input name="tel" value="{{ $inputs['tel'] }}" type="hidden">
                 <dt>アップロード写真</dt>
-                {{ $inputs['photo'] }}
+                <dt class="content">
+                    <img class="image3" src="{{ asset('storage/' . $inputs['photo']) }}" alt="Store Photo">
                 <input name="photo" value="{{ $inputs['photo'] }}" type="hidden">
+                </dt>
                 <dd class="confirm_btn">
                     <button type="submit" name="back" value="back" style="background-color: lightblue; margin-left: 10px;">戻る</button>
                     <button type="submit" class="btn_style1">登録</button>

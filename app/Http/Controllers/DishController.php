@@ -13,58 +13,62 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Store;
 use App\Models\Dish;
-use App\Models\Prefecture;
+use App\Models\Store;
 use App\Models\Country;
 
-class StoreController extends Controller
+class DishController extends Controller
 {
 
-    /**
-     * 店舗画面の表示
-     */
-    public function showStore(Request $request):View
-    {
+    // /**
+    //  * 商品画面の表示
+    //  */
+    // public function showDish(Request $request):View
+    // {
 
-        $stores = Store::paginate(4);
+    //     $dishes = Dish::paginate(4);
 
-        return view('stores.store', compact('stores'));
-    }
+    //     return view('dishes.dish', compact('dishes'));
+    // }
 
 
-    /**
-     * 店舗詳細画面の表示
-     */
+    // /**
+    //  * 料理詳細画面の表示
+    //  */
 
-    public function showStoreDetail(Request $request, $id)
-    {
-        // $idを使用して商品を取得するロジック
-        $store = Store::findOrFail($id);
+    // public function showDishDetail(Request $request, $id)
+    // {
+    //     // $idを使用して商品を取得するロジック
+    //     $dish = Dish::findOrFail($id);
 
-        if (!$store) {
-            abort(404); // 商品が見つからない場合は404エラーを返す
-        }
+    //     if (!$dish) {
+    //         abort(404); // 商品が見つからない場合は404エラーを返す
+    //     }
 
-        // $dishes = Dish::findOrFail($id);
-
-        // 店舗に紐づく料理（商品）を取得
-        // $dishes = $store->dishes;
-        $dishes = Dish::where('store_id', $id)->get();
-        // dd($dishes);
-
-        return view('stores.storeDetail', compact('store', 'dishes'));
-    }
+    //     return view('dishes.dishDetail', compact('dish'));
+    // }
 
     /**
-     * 新規店舗登録画面の表示
+     * 新規店舗Menu登録画面の表示
      */
-    public function showStoreRegister():View
+    public function showDishRegister():View
     {
         // prefectures テーブルからデータを取得
-        $prefectures = Prefecture::all();
+        $countries = Country::all();
 
-        return view('stores.storeRegister', ['prefectures' => $prefectures]); 
+        // 現在ログイン中のユーザーを取得
+        $user = Auth::user();
+
+        // ユーザーに関連する店舗情報を取得
+        $stores = Store::where('user_id', $user->id)->get();
+
+        // 取得した店舗情報を出力
+        // dd($stores);
+
+        // ユーザーに関連する店舗情報を取得
+        // $stores = $user->store_id;
+
+        return view('dishes.dishesRegister', ['countries' => $countries, 'stores' => $stores ]); 
     }
 
     // public function index(){
@@ -72,31 +76,33 @@ class StoreController extends Controller
     // 	return view('index');
     // }
 
-    public function showStoreConfirm(Request $request)
+    /**
+     * 新規店舗Menu内容確認画面の表示
+     */
+    public function showDishConfirm(Request $request)
     {
-    
+        // dd( $request);
         // $inputs = [];
 
         // バリデーションを実行
         $validatedData = $request->validate([
             'name' => 'required|max:10',
-            'postal_code' => 'required|regex:/^[0-9]*$/',
-            'prefecture_id' => 'nullable',
-            'address1' => 'required|max:20',
-            'address2' => 'required|max:20',
-            'tel' => 'required|regex:/^[0-9]*$/',
+            'price' => 'required|regex:/^[0-9]*$/',
+            'country_id' => 'required',
+            'reasonable' => 'required|regex:/^[0-9]*$/',
+            'painfulness' => 'required|regex:/^[0-9]*$/',
+            'local_taste' => 'required|regex:/^[0-9]*$/',
+            'dish_text' => 'nullable|max:255',
+            'store_id' => 'required',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // dd($request->file('file'));
-        // $inputs->prefecture_id = $validatedData['prefecture_id'];
+        // 国名を取得
+        $country = Country::where('id', $validatedData['country_id'])->first();
+        // これで$country->nameを使用して国名にアクセスできます
+        $inputs['country_id'] = $country->name;
 
-        // // 都道府県名を取得
-        // $prefecture = Prefecture::find($inputs['prefecture_id']);
-        // 都道府県名を取得
-        $prefecture = Prefecture::find($validatedData['prefecture_id']);
-        // これで$prefecture->nameを使用して都道府県名にアクセスできます
-        $inputs['prefecture_id'] = $prefecture;
+        // dd( $country);
 
         // フォームからの入力値を全て取得
         $inputs = $request->all();
@@ -117,13 +123,13 @@ class StoreController extends Controller
         }
         // dd($inputs);
         // 問題がなければ入力内容確認ページのviewに変数を渡して表示
-        return view('stores.storeConfirm', ['inputs' => $inputs]);        
+        return view('dishes.dishesConfirm', ['inputs' => $inputs]);        
     }
 
     /**
-     * 新規店舗登録完了画面の表示
+     * 新規店舗Menu登録完了画面の表示
      */
-    public function showStoreComplete(Request $request)
+    public function showDishComplete(Request $request)
     {
         // 戻るボタンをクリックされた場合
         if($request->input('back') == 'back'){
@@ -132,7 +138,7 @@ class StoreController extends Controller
             if (!empty($deletePath)) {
                 Storage::delete('/public/' . end($deletePath));
             }
-            return redirect('/storeRegister')->withInput();
+            return redirect('/dishRegister')->withInput();
         }
 
         // // ファイルがアップロードされているか確認
@@ -152,8 +158,8 @@ class StoreController extends Controller
         // }
 
         // ログインしている場合、ユーザーのIDを取得
-        Auth::check();
-        $user_id = Auth::id();
+        // Auth::check();
+        // $user_id = Auth::id();
         // dd($user_id);
 
         // if (Auth::check()) {
@@ -165,28 +171,26 @@ class StoreController extends Controller
 
 
         // 入力内容をデータベースに保存
-        $store = new Store();
+        $dish = new Dish();
 
-        $store->name = $request->input('name');
-        $store->postal_code = $request->input('postal_code');
-        // $store->prefecture = $request->input('prefecture_id');
-        $store->prefecture = 1;
-        $store->address1= $request->input('address1');
-        $store->address2 = $request->input('address2');
-        $store->tel = $request->input('tel');
-        $store->photo = $request->input('photo');
-        $store->user_id = $user_id;
-        // dd( $store);
-        // dd($request->file('photo'));
-        // $dir = 'photos';
+        $dish->name = $request->input('name');
+        $dish->price = $request->input('price');
+        $dish->country_id= $request->input('country_id');
+        $dish->reasonable= $request->input('reasonable');
+        $dish->painfulness = $request->input('painfulness');
+        $dish->local_taste = $request->input('local_taste');
+        $dish->dish_text = $request->input('dish_text');
+        $dish->store_id = $request->input('store_id');
+        $dish->photo = $request->input('photo');
+        // dd( $dish);
 
-        $store->save();
+        $dish->save();
 
         // Storage::putFile('',$request->file('photo'));
 
         // $request->file('photo')->store('public');
 
-        return view('stores.storeComplete'); 
+        return view('dishes.dishesComplete'); 
     }
 
 }

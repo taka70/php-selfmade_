@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\DishController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SpiceController;
 
@@ -75,14 +76,14 @@ Route::post('/storeConfirm', [StoreController::class, 'showStoreConfirm'])->name
 Route::post('/storeComplete', [StoreController::class, 'showStoreComplete'])->name('showStoreComplete');
 
 
-// // 新規商品Menu登録画面
-// Route::get('/account', [UserController::class, 'showAccount'])->name('showAccount');
+// 店舗Menu登録画面
+Route::get('/dishRegister', [DishController::class, 'showDishRegister'])->name('showDishRegister');
 
-// // 新規商品Menu登録内容確認画面
-// Route::post('/userConfirm', [UserController::class, 'showUserConfirm'])->name('showUserConfirm');
+// 店舗Menu登録内容確認画面
+Route::post('/dishConfirm', [DishController::class, 'showDishConfirm'])->name('showDishConfirm');
 
-// // 新規商品Menu登録完了画面
-// Route::post('/userComplete', [UserController::class, 'showUserComplete'])->name('showUserComplete');
+// 店舗Menu登録完了画面
+Route::post('/dishComplete', [DishController::class, 'showDishComplete'])->name('showDishComplete');
 
 
 // 商品一覧画面
@@ -93,33 +94,19 @@ Route::post('/product', [ProductController::class, 'showProduct'])->name('showPr
 Route::get('/productDetail/{id}', [ProductController::class, 'showProductDetail'])->name('showProductDetail');
 
 
-// // お問い合わせフォーム画面
-// Route::get('/contacts/contact', [ContactController::class, 'showContact'])->name('showContact');
-// // Route::post('/contacts/contact', [ContactController::class, 'showContact'])->name('showContact');
-// // Route::post('/users/userInfo', [Controller::class, 'register'])->name('register');
-// // Route::get('/users/userInfo', [Controller::class, 'register'])->name('register'); 
+// ユーザー情報変更
+Route::get('/userUpdate/{id}', [UserController::class, 'showUserUpdate'])->name('showUserUpdate');
 
-// // 確認画面
-// Route::get('/contacts/confirm', [ContactController::class, 'showConfirm'])->name('showConfirm');
-// Route::post('/contacts/confirm', [ContactController::class, 'showConfirm'])->name('showConfirm');
-
-// // 登録完了画面
-// Route::get('/contacts/complete', [ContactController::class, 'showComplete'])->name('showComplete');
-// Route::post('/contacts/complete', [ContactController::class, 'showComplete'])->name('showComplete');
-
-// ユーザー情報編集
-Route::get('/userUpdate', [UserController::class, 'showUserUpdate'])->name('showUserUpdate');
-
-// 編集確認画面
+// 変更情報確認画面
 Route::post('/userUpdateConfirm/{id}', [UserController::class, 'showUserUpdateConfirm'])->name('showUserUpdateConfirm');
 
-// 編集処理
+// 変更処理
 Route::post('/userUpdateComplete/{id}', [UserController::class, 'showUserUpdateComplete'])->name('showUserUpdateComplete');
 
-// // // 編集完了画面
-// // Route::get('/contacts/update_complete/{id}', [ContactController::class, 'showUpdateComplete'])->name('showUpdateComplete');
+// ユーザー管理画面
+Route::get('/userIndex', [UserController::class, 'showUserIndex'])->name('showUserIndex');
 
 
-// // ユーザー情報削除
-// Route::post('/contacts/contact/{id}', [ContactController::class, 'softDelete'])->name('softDelete');
+// ユーザー情報削除
+Route::post('/delete/{id}', [UserController::class, 'softDelete'])->name('softDelete');
 

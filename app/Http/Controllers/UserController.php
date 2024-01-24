@@ -56,7 +56,7 @@ class UserController extends Controller
             'kana' => 'required|max:10',
             'password' => 'required|min:6|confirmed',
             'userType' => 'required',
-            'number' => 'nullable|regex:/^[0-9]*$/',
+            'tel' => 'nullable|regex:/^[0-9]*$/',
         ]);
 
         // フォームからの入力値を全て取得
@@ -68,7 +68,7 @@ class UserController extends Controller
     /**
      * 新規ユーザー登録完了画面の表示
      */
-    public function showUserComplete(Request $request)
+    public function showUserComplete(Request $request,$inputs)
     {
         // 戻るボタンをクリックされた場合
         if($request->input('back') == 'back'){
@@ -77,6 +77,9 @@ class UserController extends Controller
 
         // 入力内容をデータベースに保存
         $user = new User();
+        $inputs = $request->all();
+
+        // dd($request);
 
         $user->email = $request->input('email');
         $user->name = $request->input('name');
@@ -84,6 +87,7 @@ class UserController extends Controller
         $user->password =  bcrypt($request->input('password'));
         $userType = $request->input('userType'); // userTypeの値を一度変数に保存する
 
+        // dd($user->email);
         // dd($userType);
         if ($userType === 'admin') {
             $user->role = 0; // 管理者の場合、roleを0に設定
@@ -92,177 +96,92 @@ class UserController extends Controller
         } else {
             $user->role = 1; // 会員の場合、roleを1に設定
         }
-
-        // // パスワードのハッシュ化
-        // $hashedPassword = bcrypt($request->input('password'));
-        // $user->password = $hashedPassword;
         
         $user->tel = $request->input('tel');
         
-        // $request->user()->fill([
-        //     'password' => Hash::make($request->newPassword)
-        //     ])->save();
-
-        // 入力内容をデータベースに保存
-        // $user = User::create([
-        // 'email' => $request->input('email'),
-        // 'name' => $request->input('name'),
-        // 'kana' => $request->input('kana'),
-        // 'password' => $hashedPassword,
-        // 'role' => ($request->input('userType') === 'admin') ? 0 : (($request->input('userType') === 'storeStaff') ? 2 : 1),
-        // 'tel' => $request->input('tel'),
-        // ]);
-        // dd($user);
-
         $user->save();
 
-        return redirect()->route('showUserComplete', ['user' => $user]);
-    }
-
-    // public function login(Request $request) 
-    // {
-    //     $credentials = $request->only('email','password');
-    //     // dd($credentials);
-    //     if (Auth::attempt($credentials)) {
-    //         // $request->session()->regenerate();
-    //         // 認証成功時の処理
-    //         $user = Auth::user();
-    //         // $user にはログインしたユーザーの情報が含まれる
-    //         return redirect() -> route('index')->with('loginSuccess', 'ログイン成功しました。');
-    //     }
-
-    //     return back()->withErrors([
-    //         'loginError' => 'メールアドレスかパスワードが間違っています。',
-    //     ]);
-    // }
-
-    // // /**
-    // //  * ユーザーをアプリケーションからログアウトさせる
-    // //  */
-    // // public function logout(Request $request): RedirectResponse
-    // // {
-    // //     Auth::logout();
-    
-    // //     $request->session()->invalidate();
-    
-    // //     $request->session()->regenerateToken();
-    
-    // //     return redirect() -> route('showLogin')->with('logout-success', 'ログアウトしました。');
-    // // }
-
-
-    // // public function login(Request $request) 
-    // // {
-    // //     $validatedData = $request->validated();
-    
-    // //     $user = User::where('email', $validatedData['email'])->first();
-    
-    // //     if ($user && Hash::check($validatedData['password'], $user->password)) {
-    // //         Auth::login($user);
-    
-    // //         return redirect()->route('index')->with('login_success', 'ログイン成功しました。');
-    // //     }
-    
-    // //     return back()->withErrors([
-    // //         'loginError' => 'メールアドレスかパスワードが間違っています。',
-    // //     ]);
-    // // }
-
-    // // public function login(Request $request) 
-    // // {
-    // //     // フォームリクエストでバリデーションを行った後に、認証情報を取得
-    // //     $validatedData = $request->validated();
-        
-    // //     // デバッグログの出力：認証情報をログに表示
-    // //     \Illuminate\Support\Facades\Log::info('Auth attempt called with: ', $validatedData);
-        
-    // //     // 認証情報を使って認証を試みる
-    // //     if (Auth::attempt($validatedData)) {
-    // //         // 認証成功時の処理
-    // //         $request->session()->regenerate();
-
-    // //         return redirect()->route('index')->with('login_success', 'ログイン成功しました。');
-    // //     }
-
-    // //     return back()->withErrors([
-    // //         'loginError' => 'メールアドレスかパスワードが間違っています。',
-    // //     ]);
-    // // }
-
-
-    // public function logout(Request $request) 
-    // {
-    //     Auth::logout();
-    //     $request->session()->invalidate();
-    //     $request->session()->regenerateToken();
-    
-    //     return redirect()->route('showLogin')->with('logout', 'ログアウトしました。');
-    // }
-
-    // // public function profile()
-    // // {
-    // //     return view('profile');
-    // // }
-    // // public function index(): View|RedirectResponse
-    // // {
-    // //     // ログインしているユーザー情報を取得
-    // //     $user = Auth::user();
-
-    // //     // ユーザーがログインしているかどうかをチェック
-    // //     if ($user) {
-    // //         /**
-    // //          * 選手一覧画面の表示
-    // //          */
-    // //         $playerTable = new Player;
-
-    // //         // del_flg が 0 の選手データを取得
-    // //         $players = Player::where('del_flg', 0)->paginate(20); // 10件ずつページネーションする例
-
-    // //         return view('players.index', ['players' => $players, 'user' => $user]);
-    // //     } else {
-    // //         // ユーザーがログインしていない場合の処理
-    // //         // ログイン画面などにリダイレクトするか、エラーメッセージを表示するなど適切な処理を行う
-    // //         return redirect()->route('showLogin')->with('error', 'ログインしてください');
-    // //     }
-    // // }
-
-        /**
-     * 新規ユーザー編集画面の表示
-     */
-    public function showUserUpdate():View
-    {
-        // $userTable = new User;
-        // $users = User::all();
-
-        // return view('users.account', compact('users')); 
-        return view('users.userUpdate'); 
+        return view('users.userComplete',['user' => $user]);
     }
 
     /**
-     * 新規ユーザー編集情報確認画面の表示
+     * ユーザー変更画面の表示
      */
-    public function showUserUpdateConfirm(Request $request)
+    public function showUserUpdate($id)
+    {
+        // $userTable = new User;
+        $user = Auth::user($id);
+        // dd($user);
+        return view('users.userUpdate', compact('user'), ['id' => $id]); 
+        // return view('users.userUpdate'); 
+    }
+
+
+    /**
+     * ユーザー変更情報確認画面の表示
+     */
+    public function showUserUpdateConfirm(Request $request, $id)
     {
         // バリデーションを実行
         $validatedData = $request->validate([
             'email' => 'required|email',
             'name' => 'required|max:10',
             'kana' => 'required|max:10',
+            // 'old_password' => 'required|min:6|confirmed',
             'password' => 'required|min:6|confirmed',
-            'userType' => 'required',
-            'number' => 'nullable|regex:/^[0-9]*$/',
+            // 'userType' => 'required',
+            'tel' => 'nullable|regex:/^[0-9]*$/',
         ]);
 
+
+        // $userTable = new User;
+        $user = Auth::user($id);
+        // dd($user);
+        // dd($request);
+        // $new_password = bcrypt($request->input('password'));
+        // $old_password = $request->input('old_password');
+        
+        // dd($request->old_password);
+        // if(!(Hash::check($request->old_password, $user->password))) {
+        //     return redirect()->back()->with->with([
+        //         'passwordError' => '現在のパスワードが間違っています。',
+        //     ]);
+        // } 
+    
+        $enteredPassword = $request->old_password;
+
+        // データベースから取得したハッシュされたパスワード
+        $hashedDatabasePassword = $user->password;
+
+        // パスワードを比較
+        if (!password_verify($enteredPassword, $hashedDatabasePassword)) {
+            return redirect()->back()->with([
+                'passwordError' => '現在のパスワードが間違っています。',
+            ]);
+        } else {
+            // 新しいパスワードと現在のパスワードが同じでないことを確認
+            $newPassword = $request->password;
+            if (password_verify($newPassword, $hashedDatabasePassword)) {
+                return redirect()->back()->with([
+                    'newPasswordError' => '新しいパスワードが、現在のパスワードと同じです。違うパスワードを設定してください。',
+                ]);
+            } else {
+                // 新しいパスワードをハッシュ化して保存
+                $user->password = Hash::make($newPassword);
+            }
+        }
+
+        $request->session()->regenerate();
         // フォームからの入力値を全て取得
         $inputs = $request->all();
         
-        return view('users.userUpdateConfirm', ['inputs' => $inputs]);        
+        return view('users.userUpdateConfirm',['user' => $user,'inputs' => $inputs,'id' => $id]);        
     }
 
     /**
-     * 新規ユーザー編集完了画面の表示
+     * ユーザー編集完了画面の表示
      */
-    public function showUserUpdateComplete(Request $request)
+    public function showUserUpdateComplete(Request $request, $id)
     {
         // 戻るボタンをクリックされた場合
         if($request->input('back') == 'back'){
@@ -270,30 +189,51 @@ class UserController extends Controller
         }
 
         // 入力内容をデータベースに保存
-        $user = new User();
+        // $user = new User();
+        $user = User::findOrFail($id);
+        $inputs = $request->all();
 
         $user->email = $request->input('email');
         $user->name = $request->input('name');
         $user->kana = $request->input('kana');
-        $user->password = $request->input('password');
-        $userType = $request->input('userType'); // userTypeの値を一度変数に保存する
-
-        // dd($userType);
-        if ($userType === 'admin') {
-            $user->role = 0; // 管理者の場合、roleを0に設定
-        } elseif ($userType === 'storeStaff') {
-            $user->role = 2; // 店舗スタッフの場合、roleを2に設定
-        } else {
-            $user->role = 1; // 会員の場合、roleを1に設定
-        }
-        
+        $user->password =  bcrypt($request->input('password'));      
         $user->tel = $request->input('tel');
         
         // dd($user);
 
         $user->save();
 
-        return view('users.userUpdateComplete',['user' => $user]); 
+        return view('users.userUpdateComplete', ['user' => $user,'id' => $user->id]); 
+    }
+
+    /**
+     * ユーザー変更画面の表示
+     */
+    public function showUserIndex():View
+    {
+        // del_flg が 0 のユーザーデータを取得
+        $users = User::where('flg', 0)->paginate(20);
+        // dd($user);
+        return view('users.userIndex', compact('users'));
+        // return view('users.userUpdate'); 
+    }
+
+      /**
+     * 削除処理
+     */
+    public function softDelete($id)
+    {
+        // 削除対象レコードを検索
+        $user = User::find($id);
+    
+        if ($user) {
+            $user->flg = 1; // flg を 1 に設定
+            $user->save();
+            $user->refresh();
+            return redirect()->route('showUserIndex'); // リダイレクト先を指定
+        } else {
+            return response()->json(['message' => '削除に失敗しました'], 404);
+        }
     }
 
 }

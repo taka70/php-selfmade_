@@ -93,16 +93,16 @@
                     </select>
                 </td>
                 <dt>
-                    <label for="number">電話番号</label>
+                    <label for="tel">電話番号</label>
                 </dt>
                     <div class="error-message">
-                        @if ($errors->has('number'))
-                        <li>{{$errors->first('number')}}</li>
+                        @if ($errors->has('tel'))
+                        <li>{{$errors->first('tel')}}</li>
                         @endif
                     </div>
                 <dd>
                     <div class="form-input-error"></div>
-                    <input type="text" name="number" id="number" placeholder="09012345678" value="{{ old('number') }}">
+                    <input type="text" name="tel" id="tel" placeholder="09012345678" value="{{ old('tel') }}">
                 </dd>
 
             </dl>

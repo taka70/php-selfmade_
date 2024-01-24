@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('/css/UserStyle.css') }}">
     <title>スパイス一覧画面</title>
+    <style>
+        tbody{
+                display: grid;
+                grid-template-columns: 25% 25% 25% 25%;
+            }
+
+    </style>
 </head>
 <body>
     @include('Top.header')

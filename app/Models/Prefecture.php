@@ -10,9 +10,8 @@ class Prefecture extends Model
     
     public function getPrefectureName()
     {
-        $prefectures = Prefecture::all();
+        $prefectures = Prefecture::find($this->prefecture_id)->name;
         return $prefectures;
-        // return Prefecture::find($this->prefecture_id)->name;
         
     }
 

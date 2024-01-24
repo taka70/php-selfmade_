@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{{ asset('/css/UserStyle.css') }}">
-<title>ユーザー情報編集内容確認画面</title>
+<title>ユーザー変更情報内容</title>
 <head>
 </head>
 <body>
     @include('Top.header')
     @yield('header')
         <div class="contact_box">
-        <h2>ユーザー情報編集内容確認</h2>
-        <form action="{{ route('showUserComplete') }}" method="POST">
+        <h2>ユーザー変更情報内容</h2>
+        <form action="{{ route('showUserUpdateComplete', $id) }}" method="POST">
         @csrf
-            <p>下記のユーザー情報をご確認の上、問題なければ登録ボタンを押してください。</p>
+            <p>下記のユーザー変更情報内容をご確認の上、問題なければ登録ボタンを押してください。</p>
             <p>内容を訂正する場合は戻るを押してください。</p>
             <dl class="confirm">
                 <dt>ユーザーID</dt>
@@ -30,11 +30,22 @@
                 <dd>{{ str_repeat('*', strlen($inputs['password'])) }}</dd>
                 <input name="password" value="{{ $inputs['password'] }}" type="hidden">
                 <dt>ユーザー区分</dt>
-                {{ $inputs['userType'] }}
-                <input name="userType" value="{{ $inputs['userType'] }}" type="hidden">
+                <dd>
+                    <span>        
+                        @if ($user->role == 0)
+                            管理ユーザー
+                        @elseif ($user->role == 1)
+                            一般ユーザー
+                        @elseif ($user->role == 2)
+                            店舗スタッフ
+                        @else
+                            未知のユーザー区分
+                        @endif
+                    </span>
+                </dd>
                 <dt>電話番号</dt>
-                {{ $inputs['number'] }}
-                <input name="number" value="{{ $inputs['number'] }}" type="hidden">
+                {{ $inputs['tel'] }}
+                <input name="tel" value="{{ $inputs['tel'] }}" type="hidden">
                 <dd class="confirm_btn">
                     <button type="submit" name="back" value="back" style="background-color: lightblue; margin-left: 10px;">戻る</button>
                     <button type="submit" class="btn_style1">登録</button>

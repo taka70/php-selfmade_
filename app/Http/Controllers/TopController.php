@@ -114,7 +114,6 @@ public function login(Request $request)
     if (Auth::attempt($credentials)) {
         // 認証成功時の処理
         $request->session()->regenerate();
-        // $user にはログインしたユーザーの情報が含まれる
 
         return redirect()->route('showTopPage')->with([
             'loginSuccess' => 'ログインしました。',
