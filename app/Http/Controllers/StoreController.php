@@ -28,8 +28,18 @@ class StoreController extends Controller
     {
 
         $stores = Store::paginate(4);
+        
+        //dd($);
+        // 各店舗の都道府県名を取得
+        $prefectureNames = $stores->map(function ($store) {
+            return Prefecture::find($store->prefecture)->name;
+        });
+        // dd($prefectureNames);
+        // // 都道府県名を取得
+        // $prefecture = Prefecture::find($stores['prefecture']);
+        // $prefectureName = $prefecture->name;
 
-        return view('stores.store', compact('stores'));
+        return view('stores.store', compact('stores', 'prefectureNames'));
     }
 
 
@@ -46,6 +56,10 @@ class StoreController extends Controller
             abort(404); // 商品が見つからない場合は404エラーを返す
         }
 
+
+        // 各店舗の都道府県名を取得
+        $prefectureName = Prefecture::find($store->prefecture)->name;
+        // dd($prefectureName);
         // $dishes = Dish::findOrFail($id);
 
         // 店舗に紐づく料理（商品）を取得
@@ -53,7 +67,18 @@ class StoreController extends Controller
         $dishes = Dish::where('store_id', $id)->get();
         // dd($dishes);
 
-        return view('stores.storeDetail', compact('store', 'dishes'));
+        // 国名を取得
+        $countries = [];
+        foreach ($dishes as $dish) {
+            $country = Country::find($dish->country_id);
+            if ($country) {
+                $countries[] = $country->name;
+            } else {
+                $countries[] = 'Unknown'; // もし国が見つからない場合のデフォルト値を設定
+            }
+        }
+
+        return view('stores.storeDetail', compact('store', 'dishes', 'prefectureName', 'countries'));
     }
 
     /**
@@ -75,29 +100,23 @@ class StoreController extends Controller
     public function showStoreConfirm(Request $request)
     {
     
-        // $inputs = [];
-
         // バリデーションを実行
         $validatedData = $request->validate([
-            'name' => 'required|max:10',
+            'name' => 'required|max:50',
             'postal_code' => 'required|regex:/^[0-9]*$/',
-            'prefecture_id' => 'nullable',
+            'prefecture_id' => 'required',
             'address1' => 'required|max:20',
             'address2' => 'required|max:20',
             'tel' => 'required|regex:/^[0-9]*$/',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // dd($request->file('file'));
-        // $inputs->prefecture_id = $validatedData['prefecture_id'];
-
-        // // 都道府県名を取得
-        // $prefecture = Prefecture::find($inputs['prefecture_id']);
         // 都道府県名を取得
-        $prefecture = Prefecture::find($validatedData['prefecture_id']);
+        $prefecture = Prefecture::where('id', $validatedData['prefecture_id'])->first();
         // これで$prefecture->nameを使用して都道府県名にアクセスできます
-        $inputs['prefecture_id'] = $prefecture;
+        $inputs['prefecture_id'] = $prefecture->name;
 
+        // dd($prefecture);
         // フォームからの入力値を全て取得
         $inputs = $request->all();
         // dd( $inputs );
@@ -115,9 +134,16 @@ class StoreController extends Controller
         }else{
             $path = null;
         }
-        // dd($inputs);
+
+        // 都道府県名を取得
+        $prefecture = Prefecture::find($validatedData['prefecture_id']);
+        $prefectureName = $prefecture->name;
+
+
+        // dd($prefectureName);
         // 問題がなければ入力内容確認ページのviewに変数を渡して表示
-        return view('stores.storeConfirm', ['inputs' => $inputs]);        
+        return view('stores.storeConfirm', compact('prefectureName', 'inputs'));
+
     }
 
     /**
@@ -169,8 +195,8 @@ class StoreController extends Controller
 
         $store->name = $request->input('name');
         $store->postal_code = $request->input('postal_code');
-        // $store->prefecture = $request->input('prefecture_id');
-        $store->prefecture = 1;
+        $store->prefecture = $request->input('prefecture_id');
+        // $store->prefecture = 1;
         $store->address1= $request->input('address1');
         $store->address2 = $request->input('address2');
         $store->tel = $request->input('tel');
@@ -189,6 +215,57 @@ class StoreController extends Controller
         return view('stores.storeComplete'); 
     }
 
+      // only()の引数内のメソッドはログイン時のみ有効
+    // public function construct()
+    // {
+    //     $this->middleware(['auth', 'verified'])->only(['favorite', 'unfavorite']);
+    // }
+
+    // public function toggleFavorite($id)
+    // {
+    //   Favorite::create([
+    //     'store_id' => $id,
+    //     'user_id' => Auth::id(),
+    //   ]);
+  
+    //   session()->flash('success', 'You favorite the Reply.');
+  
+    //   return redirect()->back();
+    // }
+
+    // public function toggleUnFavorite($id)
+    // {
+    //   $favorite = Favorite::where('store_id', $id)->where('user_id', Auth::id())->first();
+    //   $favorite->delete();
+  
+    //   session()->flash('success', 'You Unfavorite the Reply.');
+  
+    //   return redirect()->back();
+    // }
+    
+    public function toggleFavorite($id)
+    {
+        $store = Store::find($id);
+    
+        if (!$store) {
+            abort(404); // もし $store が null なら 404 エラーを返す
+        }
+    
+        $user = Auth::user();
+    
+        if ($store->is_favorite_by_user($user)) {
+            // お気に入り解除
+            $store->favorites()->where('user_id', $user->id)->delete();
+            session()->flash('success', 'お気に入り解除しました。');
+        } else {
+            // お気に入り登録
+            $store->favorites()->create(['user_id' => $user->id]);
+            session()->flash('success', 'お気に入り登録しました。');
+        }
+    
+        return redirect()->back();
+    }
+    
 }
 
 

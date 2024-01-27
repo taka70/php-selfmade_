@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="{{ asset('/css/UserStyle.css') }}">
 <title>ログイン画面</title>
+<title>TOP画面</title>
+    @if (session('logout'))
+        <script>
+            window.onload = function() {
+                alert("{{ session('logout') }}");
+            }
+        </script>
+    @endif
+</head>
 <body>
     <div class="flame1">
     <img class="image" src="{{asset('img/spiceCurryLogin.jpg')}}"></img>
@@ -17,12 +26,6 @@
                 @if (session('loginError'))
                 <div class="text_type">
                     {{ session('loginError')}}
-                </div>
-                @endif
-
-                @if (session('logout'))
-                <div class="text_type">
-                    {{ session('logout')}}
                 </div>
                 @endif
                 <td>ログインID:</td>
@@ -43,7 +46,7 @@
                 </td>
             </tr>
             <div class="btn_content">
-                <button type="submit" class="btn">ログイン</button>
+                <button type="submit" class="btn_login">ログイン</button>
                 <a href="{{ route('showAccount') }}">新規ユーザー登録はこちら</a>
             </div>
         </div>

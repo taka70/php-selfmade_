@@ -82,16 +82,15 @@ class DishController extends Controller
     public function showDishConfirm(Request $request)
     {
         // dd( $request);
-        // $inputs = [];
 
         // バリデーションを実行
         $validatedData = $request->validate([
-            'name' => 'required|max:10',
+            'name' => 'required|max:50',
             'price' => 'required|regex:/^[0-9]*$/',
             'country_id' => 'required',
-            'reasonable' => 'required|regex:/^[0-9]*$/',
-            'painfulness' => 'required|regex:/^[0-9]*$/',
-            'local_taste' => 'required|regex:/^[0-9]*$/',
+            'reasonable' => 'required',
+            'painfulness' => 'required',
+            'local_taste' => 'required',
             'dish_text' => 'nullable|max:255',
             'store_id' => 'required',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -103,7 +102,6 @@ class DishController extends Controller
         $inputs['country_id'] = $country->name;
 
         // dd( $country);
-
         // フォームからの入力値を全て取得
         $inputs = $request->all();
         // dd( $inputs );
@@ -121,9 +119,18 @@ class DishController extends Controller
         }else{
             $path = null;
         }
+
+        // 国名を取得
+        $country = Country::find($validatedData['country_id']);
+        $countryName = $country->name;
+
+        // 店舗名を取得
+        $store = Store::find($validatedData['store_id']);
+        $storeName = $store->name;
+
         // dd($inputs);
         // 問題がなければ入力内容確認ページのviewに変数を渡して表示
-        return view('dishes.dishesConfirm', ['inputs' => $inputs]);        
+        return view('dishes.dishesConfirm', compact('countryName', 'storeName','inputs'));       
     }
 
     /**
@@ -176,13 +183,40 @@ class DishController extends Controller
         $dish->name = $request->input('name');
         $dish->price = $request->input('price');
         $dish->country_id= $request->input('country_id');
-        $dish->reasonable= $request->input('reasonable');
-        $dish->painfulness = $request->input('painfulness');
-        $dish->local_taste = $request->input('local_taste');
         $dish->dish_text = $request->input('dish_text');
         $dish->store_id = $request->input('store_id');
         $dish->photo = $request->input('photo');
         // dd( $dish);
+
+        $reasonable= $request->input('reasonable');
+        $painfulness = $request->input('painfulness');
+        $local_taste = $request->input('local_taste');
+
+        if ($reasonable === '1') {
+            $dish->reasonable = 1; 
+        } elseif ($reasonable === '2') {
+            $dish->reasonable = 2; 
+        } else {
+            $dish->reasonable = 3; 
+        }
+
+        if ($painfulness === '1') {
+            $dish->painfulness = 1; 
+        } elseif ($painfulness === '2') {
+            $dish->painfulness = 2; 
+        } else {
+            $dish->painfulness = 3; 
+        }
+
+        if ($local_taste === '1') {
+            $dish->local_taste = 1; 
+        } elseif ($local_taste === '2') {
+            $dish->local_taste = 2; 
+        } else {
+            $dish->local_taste = 3; 
+        }
+        
+
 
         $dish->save();
 

@@ -10,18 +10,17 @@
     @include('Top.header')
     @yield('header')        
         @if(isset($spice))
-            <div class="content6">
-                <div class="content2">  
+        <div class="main2">
                     <div class="container5">  
-                        <div class="content2">
-                            <div class="content7">名称：{{ $spice->name }}</div>
+                        <div class="content12">
+                            <div class="content7">{{ $spice->name }}</div>
                             <div class="content7">効果：{{ $spice->effect }}</div> 
                         </div>
                         <div class="content">
-                            <img class="image3" src="{{asset($spice->photo)}}"></img>
+                            <img class="image7" src="{{asset($spice->photo)}}"></img>
                         </div>   
                     </div>
-                    <div class="content2">
+                    <div class="content13">
                         <div class="content8">科目：{{ $spice->subject }}</div>
                         <div class="content8">原産地：{{ $spice->habitat }}</div>
                         <div class="content8">部位：{{ $spice->part }}</div>

@@ -69,10 +69,13 @@
                     <li>{{$errors->first('reasonable')}}</li>
                     @endif
                 </div>
-                <dd>
-                    <div class="form-input-error"></div>
-                    <input type="text" name="reasonable" id="reasonable" placeholder="1" value="{{ old('reasonable') }}">
-                </dd>
+                <td>
+                    <select name="reasonable" id="reasonable" class="userType">
+                        <option value="1" selected>800円未満</option>
+                        <option value="2">800円～1500円</option>
+                        <option value="3f">1500円以上</option>
+                    </select>
+                </td>
                 <dt>
                     <label for="painfulness">辛さ</label>
                     <span class="required">*</span>
@@ -82,10 +85,13 @@
                     <li>{{$errors->first('painfulness')}}</li>
                     @endif
                 </div>
-                <dd>
-                    <div class="form-input-error"></div>
-                    <input type="text" name="painfulness" id="painfulness" placeholder="1" value="{{ old('painfulness') }}">
-                </dd>
+                <td>
+                    <select name="painfulness" id="painfulness" class="userType">
+                        <option value="1" selected>普通</option>
+                        <option value="2">中辛</option>
+                        <option value="3f">大辛</option>
+                    </select>
+                </td>
                 <dt>
                     <label for="tel">ローカルテイスト</label>
                     <span class="required">*</span>
@@ -95,10 +101,13 @@
                     <li>{{$errors->first('local_taste')}}</li>
                     @endif
                 </div>
-                <dd>
-                    <div class="form-input-error"></div>
-                    <input type="text" name="local_taste" id="local_taste" placeholder="1" value="{{ old('local_taste') }}">
-                </dd>
+                <td>
+                    <select name="local_taste" id="local_taste" class="userType">
+                        <option value="1" selected>日本人向け</option>
+                        <option value="2">少し現地より</option>
+                        <option value="3f">かなり現地の風味</option>
+                    </select>
+                </td>
                 <dt>
                     <label for="dish_text">料理説明</label>
                     <span class="required"></span>
@@ -115,11 +124,13 @@
                     </dd>
                 </dl>
                 <dt>
-                    <label for="photo">店舗名</label>
+                    <label for="store_id">店舗名</label>
                     <span class="required">*</span>
+                    @if ($stores->count() === 0)
+                        <li style="color:red;">店舗が表示されない場合、店舗を登録してください。</li>
+                    @endif
                 </dt>
                 <dd>
-                    <div class="form-input-error"></div>
                     @if ($stores)
                         <select id="store_id" name="store_id" class="userType">
                             @foreach ($stores as $store)
@@ -130,7 +141,7 @@
                 </dd>
 
                 <dt>
-                    <label for="photo">商品写真</label>
+                    <label for="photo">商品写真（※拡張子：jpeg,png,jpg,gif 登録可能）</label>
                     <span class="required">*</span>
                 </dt>
                 <dd>

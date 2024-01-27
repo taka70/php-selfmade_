@@ -18,28 +18,28 @@
             <p>内容を訂正する場合は戻るを押してください。</p>
             <dl class="confirm">
                 <dt>料理名</dt>
-                {{ $inputs['name'] }}
+                <li>{{ $inputs['name'] }}</li>
                 <input name="name" value="{{ $inputs['name'] }}" type="hidden">
                 <dt>価格</dt>
-                {{ $inputs['price'] }}
+                <li>{{ $inputs['price'] }}</li>
                 <input name="price" value="{{ $inputs['price'] }}" type="hidden">
                 <dt>発祥地</dt>
-                {{ $inputs['country_id'] }}
+                <li>{{ $countryName }}</li>
                 <input name="country_id" value="{{ $inputs['country_id'] }}" type="hidden">
                 <dt>リーズナブル</dt>
-                {{ $inputs['reasonable'] }}
+                <li>{{ $inputs['reasonable'] }}</li>
                 <input name="reasonable" value="{{ $inputs['reasonable'] }}" type="hidden">
                 <dt>辛さ</dt>
-                {{ $inputs['painfulness'] }}
+                <li>{{ $inputs['painfulness'] }}</li>
                 <input name="painfulness" value="{{ $inputs['painfulness'] }}" type="hidden">
                 <dt>ローカルテイスト</dt>
-                {{ $inputs['local_taste'] }}
+                <li>{{ $inputs['local_taste'] }}</li>
                 <input name="local_taste" value="{{ $inputs['local_taste'] }}" type="hidden">
                 <dt>店舗名</dt>
-                {{ $inputs['store_id'] }}
+                <li>{{ $storeName }}</li>
                 <input name="store_id" value="{{ $inputs['store_id'] }}" type="hidden">
                 <dt>料理説明</dt>
-                {{ $inputs['dish_text'] }}
+                <li>{{ $inputs['dish_text'] }}</li>
                 <input name="dish_text" value="{{ $inputs['dish_text'] }}" type="hidden">               
                 <dt>アップロード写真</dt>
                 <dt class="content">

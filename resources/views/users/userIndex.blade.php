@@ -52,7 +52,7 @@
             text-align: center;
         }
 
-        .btn_content {
+        /* .btn_content {
             display: flex;
             justify-content: flex-end;
         }
@@ -66,7 +66,7 @@
 
         .text_type {
             color:red;
-        } 
+        }  */
 
         tbody{
             width: 98%;

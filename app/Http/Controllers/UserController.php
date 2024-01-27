@@ -68,7 +68,7 @@ class UserController extends Controller
     /**
      * 新規ユーザー登録完了画面の表示
      */
-    public function showUserComplete(Request $request,$inputs)
+    public function showUserComplete(Request $request)
     {
         // 戻るボタンをクリックされた場合
         if($request->input('back') == 'back'){
@@ -235,6 +235,26 @@ class UserController extends Controller
             return response()->json(['message' => '削除に失敗しました'], 404);
         }
     }
+
+    // /**
+    //  * お気に入り処理
+    //  */
+    // public function toggleFavorite($storeId)
+    // {
+    //     $user = Auth::user();
+
+    //     // すでにお気に入りに登録されているか確認
+    //     if ($user->favorites->contains($storeId)) {
+    //         // お気に入りから削除
+    //         $user->favorites()->detach($storeId);
+    //     } else {
+    //         // お気に入りに登録
+    //         $user->favorites()->attach($storeId);
+    //     }
+
+    //     return redirect()->back();
+    // }
+
 
 }
 

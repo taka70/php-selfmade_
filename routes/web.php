@@ -7,7 +7,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\DishController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SpiceController;
-
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +75,15 @@ Route::post('/storeConfirm', [StoreController::class, 'showStoreConfirm'])->name
 // 新規店舗登録完了画面
 Route::post('/storeComplete', [StoreController::class, 'showStoreComplete'])->name('showStoreComplete');
 
+// // 店舗情報変更
+// Route::get('/storeUpdate/{id}', [StoreController::class, 'showUserUpdate'])->name('showUserUpdate');
+
+// // 変更情報確認画面
+// Route::post('/storeUpdateConfirm/{id}', [StoreController::class, 'showUserUpdateConfirm'])->name('showUserUpdateConfirm');
+
+// // 変更処理
+// Route::post('/storeUpdateComplete/{id}', [StoreController::class, 'showUserUpdateComplete'])->name('showUserUpdateComplete');
+
 
 // 店舗Menu登録画面
 Route::get('/dishRegister', [DishController::class, 'showDishRegister'])->name('showDishRegister');
@@ -109,4 +118,17 @@ Route::get('/userIndex', [UserController::class, 'showUserIndex'])->name('showUs
 
 // ユーザー情報削除
 Route::post('/delete/{id}', [UserController::class, 'softDelete'])->name('softDelete');
+
+// // お気に入り登録
+// Route::get('/store/like/{id}', [StoreController::class, 'toggleFavorite'])->name('toggleFavorite');
+
+// // お気に入り解除
+// Route::get('/store/unlike/{id}', [StoreController::class, 'toggleUnFavorite'])->name('toggleUnFavorite');
+// お気に入り登録・解除のルーティング
+Route::get('/store/toggle-favorite/{id}', [StoreController::class, 'toggleFavorite'])->name('store.toggleFavorite');
+
+// お気に入り画面
+Route::get('/favorite/{id}', [FavoriteController::class, 'showFavorite'])->name('showFavorite');
+
+
 

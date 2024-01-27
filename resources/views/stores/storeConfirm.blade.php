@@ -36,24 +36,24 @@
             <p>内容を訂正する場合は戻るを押してください。</p>
             <dl class="confirm">
             <dt>店舗名</dt>
-                {{ $inputs['name'] }}
+                <li>{{ $inputs['name'] }}</li>
                 <input name="name" value="{{ $inputs['name'] }}" type="hidden">
                 <dt>郵便番号</dt>
-                {{ $inputs['postal_code'] }}
+                <li>{{ $inputs['postal_code'] }}</li>
                 <input name="postal_code" value="{{ $inputs['postal_code'] }}" type="hidden">
                 <dt>都道府県</dt>
-                {{ $inputs['prefecture_id'] }}
+                <li>{{ $prefectureName }}</li>
                 <input name="prefecture_id" value="{{ $inputs['prefecture_id'] }}" type="hidden">
                 <dt>住所1</dt>
-                {{ $inputs['address1'] }}
+                <li>{{ $inputs['address1'] }}</li>
                 <input name="address1" value="{{ $inputs['address1'] }}" type="hidden">
                 <dt>住所2（番地以下・建物名・階数）</dt>
-                {{ $inputs['address2'] }}
+                <li>{{ $inputs['address2'] }}</li>
                 <input name="address2" value="{{ $inputs['address2'] }}" type="hidden">
                 <dt>電話番号</dt>
-                {{ $inputs['tel'] }}
+                <li>{{ $inputs['tel'] }}</li>
                 <input name="tel" value="{{ $inputs['tel'] }}" type="hidden">
-                <dt>アップロード写真</dt>
+                <dt>アップロード写真（※拡張子：jpeg,png,jpg,gif 登録可能）</dt>
                 <dt class="content">
                     <img class="image3" src="{{ asset('storage/' . $inputs['photo']) }}" alt="Store Photo">
                 <input name="photo" value="{{ $inputs['photo'] }}" type="hidden">

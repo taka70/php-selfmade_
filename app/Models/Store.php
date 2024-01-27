@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
+use Illuminate\Support\Facades\Auth;
 
 class Store extends Model
 {
@@ -29,25 +29,42 @@ class Store extends Model
         'photo',
     ];
 
-    // public function customUpdateMethod($id, $data)
+    public function favorites()
+    {
+      return $this->hasMany(Favorite::class, 'store_id');
+    }
+
+    // public function is_favorite_by_user()
     // {
-    // $store = Store::findOrFail($id);
-    // $store->update($data);
-    // return $store;
+    //   $id = Auth::id();
+  
+    //   $favorites = array();
+    //   foreach($this->favorites as $favorite) {
+    //     array_push($favorites, $favorite->user_id);
+    //   }
+  
+    //   if (in_array($id, $favorites)) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
     // }
-    // protected $table = 'dishes';
-    // protected $primaryKey = 'id';
-    // protected $fillable = [
-    //     'name',
-    //     'price',
-    //     'store_id',
-    //     'country_id',
-    //     'reasonable',
-    //     'painfulness',
-    //     'local_taste',
-    //     'user_id',
-    //     'dish_text',
-    //     'photo',
-    // ];
+
+    public function is_favorite_by_user()
+    {
+        // ログインユーザーが null でないことを確認
+        if ($user = Auth::user()) {
+            $id = $user->id;
+        
+            $favorites = array();
+            foreach ($this->favorites as $favorite) {
+                array_push($favorites, $favorite->user_id);
+            }
+        
+            return in_array($id, $favorites);
+        }
+
+        return false; // ログインユーザーが null の場合は false を返す
+    }
 
 }

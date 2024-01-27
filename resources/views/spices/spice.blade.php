@@ -6,15 +6,45 @@
     <link rel="stylesheet" href="{{ asset('/css/UserStyle.css') }}">
     <title>スパイス一覧画面</title>
 </head>
+    <style>
+    /* tbody {
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-rows: repeat(auto-fill, minmax(100px, 1fr)); /* 各行の高さを均等に調整
+    } */
+    tbody {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(auto-fill, minmax(100px, 1fr)); /* 各行の高さを均等に調整 */
+    }
+
+    /* レスポンシブデザイン */
+    @media (max-width: 870px) {
+        tbody {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(auto-fill, minmax(100px, 1fr)); /* 各行の高さを均等に調整 */
+        }
+    } 
+
+        /* レスポンシブデザイン */
+        @media (max-width: 600px) {
+        tbody {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-template-rows: repeat(auto-fill, minmax(100px, 1fr)); /* 各行の高さを均等に調整 */
+        }
+    } 
+
+    </style>
 <body>
     @include('Top.header')
     @yield('header')
         <div class="main">
-
             <div class="container">
-                <img class="image3" src="{{asset('img/spice_background.jpg')}}"></img>
+                <img class="image6" src="{{asset('img/spice_background.jpg')}}"></img>
             </div>
-            <div>
+            <div style="background-color: #f9fc6c;">
             <li class="title" >▪スパイス一覧</li>
             <table>
                 @foreach($spices as $spice)

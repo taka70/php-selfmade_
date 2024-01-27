@@ -56,7 +56,7 @@
                     <div class="form-input-error"></div>
                     <select id="prefecture_id" name="prefecture_id" class="userType">
                     @foreach ($prefectures as $prefecture)
-                        <option value="{{ old('prefecture_id') }}">{{ $prefecture->name }}</option>
+                    <option value="{{ $prefecture->id , old('prefecture_id') == $prefecture->id ? 'selected' : '' }}">{{ $prefecture->name }}</option>    
                     @endforeach
                     </select>
                 </dd>
@@ -100,7 +100,7 @@
                     <input type="text" name="tel" id="tel" placeholder="06612345678" value="{{ old('tel') }}">
                 </dd>
                 <dt>
-                    <label for="photo">店舗写真（看板・ロゴ・外観・内装）</label>
+                    <label for="photo">店舗写真 看板・ロゴ・外観・内装 （※拡張子：jpeg,png,jpg,gif 登録可能）</label>
                     <span class="required">*</span>
                 </dt>
                 <dd>

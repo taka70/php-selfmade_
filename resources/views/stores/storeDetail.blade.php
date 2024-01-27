@@ -7,10 +7,29 @@
     <title>店舗詳細画面</title>
 </head>
     <style>
-        tbody{
+        tbody {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(auto-fill, minmax(100px, 1fr)); /* 各行の高さを均等に調整 */
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 980px) {
+            tbody {
                 display: grid;
-                grid-template-columns: 25% 25% 25% 25%;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(auto-fill, minmax(100px, 1fr)); /* 各行の高さを均等に調整 */
             }
+        } 
+
+            /* レスポンシブデザイン */
+            @media (max-width: 600px) {
+            tbody {
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                grid-template-rows: repeat(auto-fill, minmax(100px, 1fr)); /* 各行の高さを均等に調整 */
+            }
+        } 
 
     </style>
 <body>
@@ -19,13 +38,13 @@
     <li class="title" >▪店舗詳細</li>       
         @if(isset($store))
             <div class="main2">
-                <div class="content2">  
+                <div class="content2 border_line">  
                     <div class="container5">  
-                        <div class="content2">
-                            <div class="content7">店舗名:<br>{{ $store->name }}</div>
+                        <div class="content11">
+                            <div class="content7">{{ $store->name }}</div>
                             <div class="content8">
-                                住所：{{ $store->postal_code }}<br>
-                                <span>{{ $store->prefecture_id }}</span><br>
+                                住所：〒{{ $store->postal_code }}<br>
+                                <span>{{ $prefectureName }}</span><br>
                                 <span>{{ $store->address1 }}</span><br>
                                 <span>{{ $store->address2 }}</span>
                             </div>
@@ -37,39 +56,39 @@
                     </div>
                 </div>
                 <table>
-                @foreach($dishes as $dish)
-                <tr class="content2">    
+                @foreach($dishes as $index => $dish)
+                <tr class="content9">    
                     <th class="content">
                     <img class="image3" src="{{asset('storage/' . $dish->photo)}}"></img>
                     </th>
                     <th class="content">{{ $dish->name }}</th>
                     <th class="content3">価格：{{ $dish->price }}</th>
-                    <th class="content3">発祥地：{{ $dish->country_id }}</th>
+                    <th class="content3">発祥地：{{ $countries[$index] }}</th>
                     <td class="content5">リーズナブル：
                         @if ($dish->reasonable === 1)
-                            <img class="image3" src="{{ asset('img/estimate/coin1.png') }}" alt="Coin 1">
+                            <img class="image8" src="{{ asset('img/estimate/coin1.png') }}" alt="Coin 1">
                         @elseif ($dish->reasonable === 2)
-                            <img class="image3" src="{{ asset('img/estimate/coin2.png') }}" alt="Coin 2">
+                            <img class="image9" src="{{ asset('img/estimate/coin2.png') }}" alt="Coin 2">
                         @elseif ($dish->reasonable === 3)
-                            <img class="image3" src="{{ asset('img/estimate/coin3.png') }}" alt="Coin 3">
+                            <img class="image10" src="{{ asset('img/estimate/coin3.png') }}" alt="Coin 3">
                         @endif
                     </td>
                     <td class="content5">辛さ：
                         @if ($dish->painfulness === 1)
-                            <img class="image3" src="{{ asset('img/estimate/painfulness1.png') }}" alt="Coin 1">
+                            <img class="image11" src="{{ asset('img/estimate/painfulness1.png') }}" alt="Coin 1">
                         @elseif ($dish->painfulness === 2)
-                            <img class="image3" src="{{ asset('img/estimate/painfulness2.png') }}" alt="Coin 2">
+                            <img class="image9" src="{{ asset('img/estimate/painfulness2.png') }}" alt="Coin 2">
                         @elseif ($dish->painfulness === 3)
-                            <img class="image3" src="{{ asset('img/estimate/painfulness3.png') }}" alt="Coin 3">
+                            <img class="image10" src="{{ asset('img/estimate/painfulness3.png') }}" alt="Coin 3">
                         @endif
                     </td>
                     <td class="content5">ローカルテイスト:
                         @if ($dish->local_taste === 1)
-                            <img class="image3" src="{{ asset('img/estimate/ganesha1.png') }}" alt="Coin 1">
+                            <img class="image12" src="{{ asset('img/estimate/ganesha1.png') }}" alt="Coin 1">
                         @elseif ($dish->local_taste === 2)
-                            <img class="image3" src="{{ asset('img/estimate/ganesha2.png') }}" alt="Coin 2">
+                            <img class="image9" src="{{ asset('img/estimate/ganesha2.png') }}" alt="Coin 2">
                         @elseif ($dish->local_taste === 3)
-                            <img class="image3" src="{{ asset('img/estimate/ganesha3.png') }}" alt="Coin 3">
+                            <img class="image10" src="{{ asset('img/estimate/ganesha3.png') }}" alt="Coin 3">
                         @endif
                     </td>
                 </tr>

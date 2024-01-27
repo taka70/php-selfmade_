@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\User;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 // use Illuminate\Contracts\Auth\Authenticatable;
 
 class User extends Authenticatable
@@ -36,43 +38,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // public function folders()
-    // {
-    //     return $this->hasMany('App\Models\Folder');
-    // }
-
-    // $user = User::create([
-    //     'email' => $request->input('email'),
-    //     'name' => $request->input('name'),
-    //     'kana' => $request->input('kana'),
-    //     'password' => bcrypt($request->input('password')),
-    //     'role' => ($userType === 'admin') ? 0 : (($userType === 'storeStaff') ? 2 : 1),
-    //     'tel' => $request->input('tel'),
-    // ]);
-
-    // protected $attributes = [
-    //     'password' => 'bcrypt:your_plain_text_password',
-    // ];
-
-    // protected $table = 'prefectures';
-    // protected $primaryKey = 'id';
-    // protected $fillable = [
-    //     'name',
-    // ];
-
-    // //編集画面への表示内容検索
-    // public function show($id){
-    //     $user = User::find($id); 
-
-    //     // データが存在する場合は、詳細ビューにデータを渡して表示する
-    //     return view('contacts.detail', ['user' => $user]);
-    // }
-
-    // public function customUpdateMethod($id, $data)
-    // {
-    //     $user = User::findOrFail($id);
-    //     $user->update($data);
-    //     return $user;
-    // }
+    /**
+     * ユーザーがお気に入りにした情報を取得
+     */
+    public function favorites(): HasMany
+    {
+        return $this->hasMany(Favorite::class, 'user_id');
+    }
 
  }
