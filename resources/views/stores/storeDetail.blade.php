@@ -64,7 +64,7 @@
                     <th class="content">{{ $dish->name }}</th>
                     <th class="content3">価格：{{ $dish->price }}</th>
                     <th class="content3">発祥地：{{ $countries[$index] }}</th>
-                    <td class="content5">リーズナブル：
+                    <td class="content5">価格帯：
                         @if ($dish->reasonable === 1)
                             <img class="image8" src="{{ asset('img/estimate/coin1.png') }}" alt="Coin 1">
                         @elseif ($dish->reasonable === 2)
@@ -82,13 +82,13 @@
                             <img class="image10" src="{{ asset('img/estimate/painfulness3.png') }}" alt="Coin 3">
                         @endif
                     </td>
-                    <td class="content5">ローカルテイスト:
+                    <td class="content3">味わい:
                         @if ($dish->local_taste === 1)
-                            <img class="image12" src="{{ asset('img/estimate/ganesha1.png') }}" alt="Coin 1">
+                            <li>日本人向け</li>
                         @elseif ($dish->local_taste === 2)
-                            <img class="image9" src="{{ asset('img/estimate/ganesha2.png') }}" alt="Coin 2">
+                            <li>少し現地よりの味わい</li>
                         @elseif ($dish->local_taste === 3)
-                            <img class="image10" src="{{ asset('img/estimate/ganesha3.png') }}" alt="Coin 3">
+                            <li>現地の風味</li>
                         @endif
                     </td>
                 </tr>

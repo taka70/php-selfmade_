@@ -16,22 +16,22 @@
             <p>内容を訂正する場合は戻るを押してください。</p>
             <dl class="confirm">
                 <dt>ユーザーID</dt>
-                {{ $inputs['email'] }}
+                <li>{{ $inputs['email'] }}</li>
                 <input name="email" value="{{ $inputs['email'] }}" type="hidden">
                 <dt>ユーザー名</dt>
-                {{ $inputs['name'] }}
+                <li>{{ $inputs['name'] }}</li>
                 <input name="name" value="{{ $inputs['name'] }}" type="hidden">
                 <dt>フリガナ</dt>
-                {{ $inputs['kana'] }}
+                <li>{{ $inputs['kana'] }}</li>
                 <input name="kana" value="{{ $inputs['kana'] }}" type="hidden">
                 <dt>Password</dt>
-                <dd>{{ str_repeat('*', strlen($inputs['password'])) }}</dd>
+                <li>{{ str_repeat('*', strlen($inputs['password'])) }}</li>
                 <input name="password" value="{{ $inputs['password'] }}" type="hidden">
                 <dt>ユーザー区分</dt>
-                {{ $inputs['userType'] }}
+                <li>{{ $inputs['userType'] }}</li>
                 <input name="userType" value="{{ $inputs['userType'] }}" type="hidden">
                 <dt>電話番号</dt>
-                {{ $inputs['tel'] }}
+                <li>{{ $inputs['tel'] }}</li>
                 <input name="tel" value="{{ $inputs['tel'] }}" type="hidden">
                 <dd class="confirm_btn">
                     <button type="submit" name="back" value="back" style="background-color: lightblue; margin-left: 10px;">戻る</button>

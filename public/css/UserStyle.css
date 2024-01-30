@@ -66,7 +66,19 @@ tr:nth-child(odd) td {
 } */
 
 li {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 	font-size: 15px;
+=======
+	font-size: 25px;
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+	font-size: 25px;
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+	font-size: 25px;
+>>>>>>> parent of 7177cf2 (10th commit)
 	display: inline-block;
 }
 
@@ -487,6 +499,101 @@ th {
 }
 
 .detail-link {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    display: block;
+    text-align: center;
+    padding: 5px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.update-link {
+    display: block;
+    text-align: center;
+    padding: 5px;
+    background-color: greenyellow;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 60px;
+    margin: 5px;
+}
+.delete-link {
+    display: block;
+    text-align: center;
+    padding: 5px;
+    background-color: red;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 60px;
+    margin: 5px;
+}
+.title {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 20px;
+}
+.content {
+    text-align: left;
+    margin-bottom: 3%;
+    height: 100%;
+    font-weight: 800;
+}
+.btn_content {
+    display: flex;
+    justify-content: flex-end;
+}
+.btn_logout {
+    background-color: lightsalmon;
+    padding: 20px;
+    border: 3px solid #ddd;
+}
+.text_type {
+    color:red;
+} 
+/* confirm.php */
+.contact_box .confirm dt {
+	font-size: 20px;
+	width: 95%;
+	margin-top: 1rem;
+	border-bottom: 1px solid #ccc;
+}
+.contact_box .confirm dd {
+    padding: 1%;
+}
+.contact_box .confirm dd.confirm_btn {
+    padding: 1% 0;
+    display: flex;
+    justify-content: space-between;
+}
+.contact_box .confirm dd.confirm_btn a {
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 10px;
+    background-color: transparent;
+    border: 2px solid #066;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #066;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 150%;
+}
+.btn_style {
+    background-color: lightblue;
+    margin-left: 10px;
+=======
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 	display: block;
 	text-align: center;
 	padding: 5px;
@@ -494,6 +601,13 @@ th {
 	color: #fff;
 	text-decoration: none;
 	border-radius: 5px;
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 }
 
 .update-link {
@@ -552,7 +666,7 @@ th {
 /* confirm.php */
 
 .contact_box .confirm dt {
-	font-size: 20px;
+	font-size: 25px;
 	width: 95%;
 	margin-top: 1rem;
 	border-bottom: 1px solid #ccc;
@@ -1034,11 +1148,21 @@ header nav a:hover {
 
 
 /* product*/
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+.content14 {
+=======
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 
 .content9 {
+>>>>>>> parent of 7177cf2 (10th commit)
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: 40% 15% 5% 10% 10% 10% 15%;
+    grid-template-rows: 40% 15% 10% 10% 10% 10% 5%;
     margin: 5px;
 }
 
@@ -1078,7 +1202,16 @@ header nav a:hover {
 .content10 {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    grid-template-rows: 25% 15% 15% 15% 15% 15%;;
+=======
     grid-template-rows: 45% 10% 10% 10% 10% 10% 15%;
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+    grid-template-rows: 45% 10% 10% 10% 10% 10% 15%;
+>>>>>>> parent of 7177cf2 (10th commit)
     margin: 5px;
 }
 
@@ -1089,7 +1222,15 @@ header nav a:hover {
 }
 
 .image8_1 {
+<<<<<<< HEAD
+<<<<<<< HEAD
 	width: 100%;
+=======
+	width: 12%;
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+	width: 12%;
+>>>>>>> parent of 7177cf2 (10th commit)
     height: auto;
 }
 
@@ -1103,9 +1244,16 @@ header nav a:hover {
     height: 80%;
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 .image11 {
 	width: 80%;
     height: 70%;
+=======
+.image11_1 {
+    width: 12%;
+    height: 85%;
+>>>>>>> parent of 7177cf2 (10th commit)
 }
 
 .image12_1 {
@@ -1122,6 +1270,66 @@ header nav a:hover {
     margin: 5px;
 }
 
+<<<<<<< HEAD
+.content9 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 35% 15% 10% 10% 10% 10% 10%;
+    margin: 5px;
+}
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+    grid-template-rows: 45% 10% 10% 10% 10% 10% 15%;
+    margin: 5px;
+}
+
+.image7 {
+	width: 100%;
+    height: auto;
+    border-radius: 40px;
+}
+
+.image8_1 {
+	width: 12%;
+    height: auto;
+}
+
+.image9_1 {
+	/* width: 175%; */
+    height: 75%;
+}
+
+.image10_1 {
+	/* width: 220%; */
+    height: 80%;
+}
+
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+.image11_1 {
+    width: 12%;
+    height: 85%;
+}
+
+.image12_1 {
+	/* width: 100%; */
+    height: 80%;
+}
+
+/* store */
+
+.content2 {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 30% 7% 7% 7% 7% 7% 7% 7% 10% 10%;
+    margin: 5px;
+}
+
+<<<<<<< HEAD
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 
 .main2{
 	background-color: white;
@@ -1139,10 +1347,28 @@ header nav a:hover {
 	}
 
 .content3 {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    text-align: left;
+    font-size: 250%;
+    height: 100%
+=======
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 	text-align: left;
 	font-size: 160%;
 	height: 100%
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 }
 
 .content4 {
@@ -1154,8 +1380,23 @@ header nav a:hover {
 }
 
 .content5 {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    text-align: left;
+    font-size: 250%;
+=======
 	text-align: left;
 	font-size: 160%;
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+	text-align: left;
+	font-size: 160%;
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+	text-align: left;
+	font-size: 160%;
+>>>>>>> parent of 7177cf2 (10th commit)
     display: grid;
     align-items: center;
     grid-template-columns: 50% 20%;
@@ -1208,11 +1449,154 @@ header nav a:hover {
 
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+/* レスポンシブデザイン */
+@media (max-width: 1200px) {
+    /* product detail */
+    .content10 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: 39% 13% 13% 10% 15% 10%;
+        margin: 5px;
+    }
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1050px) {
+    /* topPage */
+    .mv__news__date{
+        font-size: 250%;
+    }
+    
+    .mv__news__body{
+        font-size: 130%;
+    }
+    .mv_news1{
+        top: 55%;
+        position: absolute;
+        right: 0;
+        z-index: 3;
+        background-color: white;
+        padding: 20px 125px 20px 125px;
+        border-radius: 100px 0 0 100px;
+    }
+    
+    .mv_news2{
+        top: 75%;
+        position: absolute;
+        right: 0;
+        z-index: 3;
+        background-color: white;
+        padding: 20px 95px 20px 95px;
+        border-radius: 100px 0 0 100px;
+    }
+    
+    .mv_news3{
+        top: 95%;
+        position: absolute;
+        right: 0;
+        z-index: 3;
+        background-color: white;
+        padding: 20px 120px 20px 120px;
+        border-radius: 100px 0 0 100px;
+    }
+    
+    .mv_news4{
+        top: 115%;
+        position: absolute;
+        right: 0;
+        z-index: 3;
+        background-color: white;
+        padding: 20px 90px 20px 90px;
+        border-radius: 100px 0 0 100px;
+    }
+    .container4 {
+        margin: 160% 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 150%;
+    }
+}
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 
 /* レスポンシブデザイン */
 @media (max-width: 980px) {
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    /* product */
+    .content14 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: 43% 9% 6% 9% 10% 10% 15%;
+        margin: 5px;
+    }
+    .image8 {
+        width: 100%;
+        height: 85%;
+    }
+    
+    .image9 {
+        width: 190%;
+        height: 70%;
+    }
+    
+    .image10 {
+        width: 240%;
+        height: 80%;
+    }
+    
+    .image11 {
+        width: 80%;
+        height: 70%;
+    }
+    
+    .image12 {
+        width: 90%;
+        height: 70%;
+    }
 
+    /* product detail */
+    .content10 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows:     45% 10% 10% 10% 14% 10%;
+        margin: 5px;
+    }
+
+
+    /* store */
+    .content9 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: 43% 9% 6% 9% 10% 10% 15%;
+        margin: 5px;
+    }
+
+    /* store detail */
+    .content8 {
+        text-align: left;
+        font-weight: 800;
+        font-size: 200%;
+    }
+=======
+
+=======
+
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+
+>>>>>>> parent of 7177cf2 (10th commit)
 	/* topPage */
 
 	.mv__news__date{
@@ -1313,6 +1697,13 @@ header nav a:hover {
 		font-size: 200%;
 	}
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 
 
 
@@ -1388,6 +1779,68 @@ header nav a:hover {
 
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+@media(max-width:700px){
+    /* topPage */
+    .container4 {
+        margin: 200% 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 160%;
+    }
+    .mv_news1{
+        top: 50%;
+        position: absolute;
+        right: 0;
+        z-index: 3;
+        background-color: white;
+        padding: 20px 77px 20px 77px;
+        border-radius: 100px 0 0 100px;
+    }
+    
+    .mv_news2{
+        top: 65%;
+        position: absolute;
+        right: 0;
+        z-index: 3;
+        background-color: white;
+        padding: 20px 45px 20px 60px;
+        border-radius: 100px 0 0 100px;
+    }
+    
+    .mv_news3{
+        top: 80%;
+        position: absolute;
+        right: 0;
+        z-index: 3;
+        background-color: white;
+        padding: 20px 60px 20px 80px;
+        border-radius: 100px 0 0 100px;
+    }
+    
+    .mv_news4{
+        top: 95%;
+        position: absolute;
+        right: 0;
+        z-index: 3;
+        background-color: white;
+        padding: 20px 45px 20px 50px;
+        border-radius: 100px 0 0 100px;
+    }
+
+    /* product  detail*/
+    .container5{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+=======
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 
 @media(max-width:650px){
 	/* topPage */
@@ -1399,6 +1852,13 @@ header nav a:hover {
 		align-items: center;
 		font-size: 160%;
 	}
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 }
 
 @media(max-width:600px){
@@ -1412,6 +1872,118 @@ header nav a:hover {
 		flex-direction: column;
 	}
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    /* store */
+    .content2 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: 40% 7% 6% 5% 5% 6% 6% 10% 10%;
+        margin: 5px;
+    }
+    .content9 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: 40% 10% 10% 10% 10% 15% 15%;
+        margin: 5px;
+    }
+
+    /* product */
+    .conten14 {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: 40% 10% 10% 10% 10% 15% 15%;
+        margin: 5px;
+    }
+    /* header */
+    .nav-02 {
+        display: block;
+        position: fixed;
+        left: -40%;
+        width: 30%;
+        height: 100%;
+        background-color: white;
+        opacity: 0.8;
+        padding: 10.5rem 2.5rem;
+        z-index: 1;
+        transition: 0.7s;
+        overflow-x: hidden;
+        top: 0%;
+    }
+    
+    .nav-02 ul {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    header nav {
+        display: none;
+    }
+    
+    .nav-02 ul li {
+        margin-bottom: 2.5rem;
+        color: #2da690;
+    }
+    
+    .link {
+        color: #000000DE;
+        cursor: pointer;
+    }
+    
+    .menu-btn{
+        display: block;
+        position: relative; /*線の起点*/
+        width: 50px; /*ボタンの幅*/
+        height: 50px; /*ボタンの高さ*/
+        cursor: pointer; /*クリック可能を伝える*/
+        z-index: 9999; /*最前面*/
+    }
+    
+    /*** ボタンの三本線（共通） ***/
+    .menu-btn span{
+        position: absolute;
+        width: 50%; /*線の長さ*/
+        height: 3px; /*線の太さ*/
+        left: calc(50% - 40% / 2); /*中央から長さの半分を引く*/
+        background: #279b8f; /*線の色*/
+        transition: .4s;
+    }
+    
+    /* 順に上・中・下の線 */
+    .top-bar{
+        top: calc(35% - 2px / 2); /*上から35%の位置*/ 
+    }
+    .center-bar{
+        top: calc(50% - 2px / 2); /*上から50%の位置*/
+    }
+    .under-bar{
+        top: calc(65% - 2px / 2); /*上から65%の位置*/
+    }
+    
+    /** クリック後(✔が入った後)の線 **/
+    /*上の線*/
+    #open:checked ~ .menu-btn > .top-bar {
+        top: calc(50% - 2px / 2); /*中央*/
+        transform: rotate(45deg); /*45度回転*/
+    }
+    
+      /*中の線*/
+    #open:checked ~ .menu-btn > .center-bar{
+        opacity: 0;/*真ん中の線は透過*/
+    }
+    
+    /*下の線*/
+    #open:checked ~ .menu-btn > .under-bar{
+        top: calc(50% - 2px / 2); /*中央*/
+        transform: rotate(-45deg); /*-45度回転*/
+    }
+    
+=======
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 
 	/* spice */
 
@@ -1524,4 +2096,11 @@ header nav a:hover {
 	}
 
 	
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
+=======
+>>>>>>> parent of 7177cf2 (10th commit)
 }

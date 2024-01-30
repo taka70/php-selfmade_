@@ -14,12 +14,12 @@
             <div class="main2">
                     <div class="container5">  
                         <div class="content10">
-                            <div class="content7">商品名:<br>{{ $product->name }}</div>
-                            <div class="content8">価格:{{ $product->price }}</div> 
+                            <div class="content7">{{ $product->name }}</div>
+                            <div class="content8">価格:￥{{ $product->price }}</div> 
                             <div class="content8">発祥地：{{ $product->country->name }}</div>
-                            <div class="content8 main3">リーズナブル：
+                            <div class="content8 main3">価格帯：
                                 @if ($product->reasonable === 1)
-                                    <img class="image8" src="{{ asset('img/estimate/coin1.png') }}" alt="Coin 1">
+                                    <img class="image8_1" src="{{ asset('img/estimate/coin1.png') }}" alt="Coin 1">
                                 @elseif ($product->reasonable === 2)
                                     <img class="image9_1" src="{{ asset('img/estimate/coin2.png') }}" alt="Coin 2">
                                 @elseif ($product->reasonable === 3)
@@ -28,20 +28,20 @@
                             </div>
                             <div class="content8 main3">辛さ：
                                 @if ($product->painfulness === 1)
-                                    <img class="image11" src="{{ asset('img/estimate/painfulness1.png') }}" alt="Coin 1">
+                                    <img class="image11_1" src="{{ asset('img/estimate/painfulness1.png') }}" alt="Coin 1">
                                 @elseif ($product->painfulness === 2)
                                     <img class="image9_1" src="{{ asset('img/estimate/painfulness2.png') }}" alt="Coin 2">
                                 @elseif ($product->painfulness === 3)
                                     <img class="image10_1" src="{{ asset('img/estimate/painfulness3.png') }}" alt="Coin 3">
                                 @endif
                             </div>
-                            <div class="content8 main3">ローカルテイスト:
+                            <div class="content8 main3">味わい:
                                 @if ($product->local_taste === 1)
-                                    <img class="image12_1" src="{{ asset('img/estimate/ganesha1.png') }}" alt="Coin 1">
+                                    <li>日本人向け</li>
                                 @elseif ($product->local_taste === 2)
-                                    <img class="image9_1" src="{{ asset('img/estimate/ganesha2.png') }}" alt="Coin 2">
+                                    <li>少し現地よりの味わい</li>
                                 @elseif ($product->local_taste === 3)
-                                    <img class="image10_1" src="{{ asset('img/estimate/ganesha3.png') }}" alt="Coin 3">
+                                    <li>現地の風味</li>
                                 @endif
                             </div>
                         </div>
